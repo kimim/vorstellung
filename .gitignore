@@ -1,0 +1,17 @@
+/target
+/lib
+/classes
+/checkouts
+pom.xml
+*.jar
+*.class
+/.lein-*
+profiles.clj
+/.env
+.nrepl-port
+/.shadow-cljs
+package.json
+package-lock.json
+shadow-cljs.edn
+/node_modules
+/log
