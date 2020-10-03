@@ -13,7 +13,8 @@
     [reitit.frontend.easy :as rfe]
     [clojure.string :as string]
     [vorstellung.header :as header]
-    [vorstellung.icons :as icons])
+    [vorstellung.icons :as icons]
+    [vorstellung.grid :as grid])
   (:import goog.History))
 
 (defn about-page []
@@ -41,6 +42,8 @@
            :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
      ["/icons" {:name :icons
                 :view icons/page}]
+     ["/grid" {:name :grid
+                :view grid/page}]
      ["/about" {:name :about
                 :view #'about-page}]]))
 

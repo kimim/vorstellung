@@ -1,6 +1,7 @@
 html,
 body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-y: auto;
 }
 @font-face {
   font-family: 'Material Icons';
@@ -34,13 +35,13 @@ body {
 }
 
 
-.drawerOpen
+.drawer-open
 {
     width: 240px;
     overflow-x: hidden;
 }
 
-.drawerClose
+.drawer-close
 {
     width: 55px;
     overflow-x: hidden;
