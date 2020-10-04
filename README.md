@@ -12,7 +12,7 @@ You will need [Leiningen][1] 2.0 or above installed.
 
 To watch ClojureScript changes, run:
 
-    lein shadow watch app
+    lein shadow watch app login
 
 To watch Clojure changes, run:
 
