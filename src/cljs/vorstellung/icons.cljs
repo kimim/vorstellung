@@ -1,10 +1,10 @@
 (ns vorstellung.icons
-  (:require ["@material-ui/icons" :as ico]))
+  (:require ["@material-ui/icons" :refer [Apps Mail Cake BugReport]]))
 
 (defn page []
   [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
    [:div
-    [:> ico/Apps]
-    [:> ico/Mail]
-    [:> ico/Cake]
-    [:> ico/BugReport]]])
+    [:> Apps]
+    [:> Mail]
+    [:> Cake]
+    [:> BugReport]]])

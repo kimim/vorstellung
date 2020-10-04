@@ -1,8 +1,8 @@
 (ns vorstellung.header
   (:require [reagent.core :as r]
             ["@material-ui/core" :as m]
-            ["@material-ui/icons" :as ico
-             :refer [Menu ChevronRight ChevronLeft Mail]]))
+            ["@material-ui/icons"
+             :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
 
 (defn menu-item [link icon text]
   [:> m/ListItem {:button true :component "a" :href link}
@@ -23,7 +23,8 @@
         [:> Menu]]
        [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
         "Die Welt ist Meine Vorstellung"]
-       [:> m/Button {:color "inherit"} "Login"]]]
+       [:> m/Link  {:href "/login"}
+        [:> m/Button {:color "inherit"} "Login"]]]]
      [:> m/Drawer {:variant "permanent"
                    :classes {:paper (if @open "drawer-open" "drawer-close")}
                    :style {:width (if @open "240px" "55px")
@@ -39,7 +40,6 @@
        #_[:> m/ListItem {:button true :component "a" :href "#/icons"}
         [:> m/ListItemIcon [:> ico/Apps]]
         [:> m/ListItemText {:primary "Icons"}]]
-       [menu-item "#/icons" ico/Apps "Icons"]
-       [menu-item "#/grid" ico/BorderAll "Grid Layout"]
-       [menu-item "#/about" ico/Chat "About"]
-       ]]]))
+       [menu-item "#/icons" Toys "Icons"]
+       [menu-item "#/grid" ViewModule "Grid Layout"]
+       [menu-item "#/about" Info "About"]]]]))
