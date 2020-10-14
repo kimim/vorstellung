@@ -15,3 +15,5 @@ package-lock.json
 shadow-cljs.edn
 /node_modules
 /log
+dev-config.edn
+test-config.edn
