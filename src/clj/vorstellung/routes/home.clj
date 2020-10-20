@@ -23,8 +23,12 @@
       (home-page request))))
 
 (defn signup [request]
-  (db/create-user! (:params request))
-  (signin request))
+  (try
+    (db/create-user! (:params request))
+    (signin request)
+    (catch Exception e
+      {:status 400
+       :body {:message "Already created"}})))
 
 (defn home-routes []
   [""
