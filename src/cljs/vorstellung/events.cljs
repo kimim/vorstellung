@@ -76,3 +76,25 @@
   :common/error
   (fn [db _]
     (:common/error db)))
+
+;; user signup and signin
+
+(rf/reg-event-db
+  :set-user
+  (fn [db [_ field value]]
+    (assoc-in db [:user field] value)))
+
+(rf/reg-event-fx
+  :signup
+  (fn [_ [_ form-data]]
+    {:http-xhrio {:method          :post
+                  :uri             "/signup"
+                  :params          form-data
+                  :format          (ajax/json-request-format)
+                  :response-format (ajax/json-response-format)
+                  :on-success       [:set-docs]}}))
+
+(rf/reg-sub
+  :user
+  (fn [db _]
+    (:user db)))

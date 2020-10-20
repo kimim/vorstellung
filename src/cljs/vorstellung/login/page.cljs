@@ -1,5 +1,6 @@
 (ns vorstellung.login.page
   (:require [reagent.core :as r]
+            [re-frame.core :as rf]
             ["@material-ui/core" :as m]
             ["@material-ui/icons" :refer [LockOutlined]]))
 
@@ -50,30 +51,35 @@
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "first-name" :label "First Name"
-         :name "first-name" :autoComplete "fname" :autoFocus true}]]
+         :name "first-name" :autoComplete "fname" :autoFocus true
+         :on-change #(rf/dispatch [:set-user :first-name (.-value (.-target %))])}]]
       [:> m/Grid {:item true :xs 12 :sm 6}
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "last-name" :label "Last Name"
-         :name "last-name" :autoComplete "lname"}]]
+         :name "last-name" :autoComplete "lname"
+         :on-change #(rf/dispatch [:set-user :last-name (.-value (.-target %))])}]]
       [:> m/Grid {:item true :xs 12}
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "email" :label "Email Address"
-         :name "email" :autoComplete "email"}]]
+         :name "email" :autoComplete "email"
+         :on-change #(rf/dispatch [:set-user :email (.-value (.-target %))])}]]
       [:> m/Grid {:item true :xs 12}
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "password" :label "Password"
-         :name "password" :autoComplete "current-password"}]]]
+         :name "password" :autoComplete "current-password"
+         :on-change #(rf/dispatch [:set-user :password (.-value (.-target %))])}]]]
      [:> m/Grid {:item true :xs 12}
       [:> m/FormControlLabel
        {:control (r/as-element
                   [:> m/Checkbox {:value "allow-extra-emails"
                                   :color "primary"}])
         :label "I want to receive inspiration, marketing promotions and updates via email."}]]
-     [:> m/Button {:type "submit" :fullWidth true :variant "contained"
-                   :color "primary"}
+     [:> m/Button {:fullWidth true :variant "contained"
+                   :color "primary"
+                   :on-click #(rf/dispatch [:signup @(rf/subscribe [:user])])}
       "Sign up"]
      [:> m/Grid {:container true}
       [:> m/Grid {:item true}
