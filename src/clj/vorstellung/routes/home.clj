@@ -19,7 +19,8 @@
     (if (= (:password user) (get-in request [:params :password]))
       (let [updated-session (assoc session :identity (keyword (:email user)))]
         (-> (redirect "/")
-            (assoc :session updated-session)))
+            (assoc :session updated-session)
+            (home-page)))
       (home-page request))))
 
 (defn signup [request]
@@ -27,6 +28,7 @@
     (db/create-user! (:params request))
     (signin request)
     (catch Exception e
+      (print e)
       {:status 400
        :body {:message "Already created"}})))
 
@@ -35,7 +37,8 @@
    {:middleware [#_middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/login" {:get login-page}]
+   ["/login" {:get login-page
+              :post signup}]
    ["/signin" {:post signin}]
    ["/signup" {:post signup}]
    ["/docs" {:get (fn [_]

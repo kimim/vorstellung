@@ -84,6 +84,22 @@
   (fn [db [_ field value]]
     (assoc-in db [:user field] value)))
 
+
+(rf/reg-sub
+  :user
+  (fn [db _]
+    (:user db)))
+
+(rf/reg-event-db
+  :signup-status
+  (fn [db [_ status]]
+    (assoc db :signup-status status)))
+
+(rf/reg-sub
+  :signup-status
+  (fn [db [_]]
+    (db :signup-status)))
+
 (rf/reg-event-fx
   :signup
   (fn [_ [_ form-data]]
@@ -92,9 +108,5 @@
                   :params          form-data
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format)
-                  :on-success       [:set-docs]}}))
-
-(rf/reg-sub
-  :user
-  (fn [db _]
-    (:user db)))
+                  :on-success      [:signup-status true]
+                  :on-failure      [:signup-status false]}}))
