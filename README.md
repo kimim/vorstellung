@@ -10,6 +10,15 @@ You will need [Leiningen][1] 2.0 or above installed.
 
 ## Running
 
+To create migration:
+
+    lein run create-migrate "users-table"
+    lein run migrate
+
+To drop tables:
+
+    lein run rollback
+
 To watch ClojureScript changes, run:
 
     lein shadow watch app login
