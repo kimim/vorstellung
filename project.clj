@@ -48,7 +48,6 @@
                  [ring/ring-defaults "0.3.2"]
                  [selmer "1.12.28"]
                  [thheller/shadow-cljs "2.10.17" :scope "provided"]
-                 [org.xerial/sqlite-jdbc "3.32.3.2"] ;; sqlite jdbc
                  ]
 
   :npm-deps [["@material-ui/core" "4.11.0"]
