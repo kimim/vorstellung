@@ -6,5 +6,6 @@
  :port 3030
  ;; when :nrepl-port is set the application starts the nREPL server on load
  :nrepl-port 7070
- :database-url "jdbc:mysql://mysql.kimi.im:3306/vorstellung?useSSL=false&requireSSL=false&characterEncoding=utf8&serverTimezone=UTC&user=root&password=123456"
+ :database-url "jdbc:sqlite:kimim.db"
+ ;;:database-url "jdbc:mysql://mysql.kimi.im:3306/vorstellung?useSSL=false&requireSSL=false&characterEncoding=utf8&serverTimezone=UTC&user=root&password=123456"
  }
