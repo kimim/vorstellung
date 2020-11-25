@@ -10,7 +10,8 @@ JDK and Node.js
 export GRAALVM_VERSION=20.3.0
 export GRAALVM_NAME=graalvm-ce-java11-linux-amd64-$GRAALVM_VERSION
 export GRAALVM_LIB=graalvm-ce-java11-$GRAALVM_VERSION
-wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
+export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/download
+wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
 tar -xvzf $GRAALVM_NAME.tar.gz
 sudo mv $GRAALVM_LIB /usr/local/lib
 echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> .bashrc
