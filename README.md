@@ -16,8 +16,8 @@ export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/down
 wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
 tar -xvzf $GRAALVM_NAME.tar.gz
 sudo mv $GRAALVM_LIB /usr/local/lib
-echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> .bashrc
-source .bashrc
+echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 - macOS
@@ -30,8 +30,8 @@ export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/down
 wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
 tar -xvzf $GRAALVM_NAME.tar.gz
 sudo mv $GRAALVM_LIB /usr/local/lib
-echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> .bashrc
-source .bashrc
+echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 - Windows
