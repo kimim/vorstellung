@@ -2,8 +2,15 @@
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]
-   ["@material-ui/icons"
-    :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
+   ;; only require the needed submodules, to reduce js size
+   ["@material-ui/icons/Info" :default Info]
+   ["@material-ui/icons/Menu" :default Menu]
+   ["@material-ui/icons/ChevronRight" :default ChevronRight]
+   ["@material-ui/icons/ChevronLeft" :default ChevronLeft]
+   ["@material-ui/icons/Toys" :default Toys]
+   ["@material-ui/icons/ViewModule" :default ViewModule]
+   #_["@material-ui/icons"
+    :refer [Info Menu ChevronRight ChevronLeft Toys ViewModule]]))
 
 (defn menu-item [link icon text]
   [:> m/ListItem {:button true :component "a" :href link}
