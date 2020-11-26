@@ -7,11 +7,11 @@
    [goog.events :as events]
    [goog.history.EventType :as HistoryEventType]
    [markdown.core :refer [md->html]]
-   [vorstellung.ajax :as ajax]
-   [vorstellung.events]
    [reitit.core :as reitit]
    [reitit.frontend.easy :as rfe]
    [clojure.string :as string]
+   [vorstellung.events]
+   [vorstellung.ajax :as ajax]
    [vorstellung.header :as header]
    [vorstellung.icons :as icons]
    [vorstellung.grid :as grid])

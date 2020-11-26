@@ -2,7 +2,8 @@
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]
-   ;; only require the needed submodules, to reduce js size
+   ;; require only submodules, reduce 7M in dev, 4M in prod
+   ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
    ["@material-ui/icons/Info" :default Info]
    ["@material-ui/icons/Menu" :default Menu]
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
@@ -10,7 +11,7 @@
    ["@material-ui/icons/Toys" :default Toys]
    ["@material-ui/icons/ViewModule" :default ViewModule]
    #_["@material-ui/icons"
-    :refer [Info Menu ChevronRight ChevronLeft Toys ViewModule]]))
+    :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
 
 (defn menu-item [link icon text]
   [:> m/ListItem {:button true :component "a" :href link}
