@@ -1,8 +1,9 @@
 (ns vorstellung.login.page
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            ["@material-ui/core" :as m]
-            ["@material-ui/icons" :refer [LockOutlined]]))
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   ["@material-ui/core" :as m]
+   ["@material-ui/icons" :refer [LockOutlined]]))
 
 (defn signin []
   (let [user @(rf/subscribe [:user])]
@@ -44,7 +45,7 @@
 (defn signup-form []
   [:<>
    [:> m/Avatar {:style {:backgroundColor "red" :margin 20}}
-       [:> LockOutlined]]
+    [:> LockOutlined]]
    [:> m/Typography {:component "h1" :variant "h5"} "Sign up"]
    [:> m/Grid {:container true :spacing 2}
     [:> m/Grid {:item true :xs 12 :sm 6}
@@ -89,14 +90,14 @@
 (defn signup-success []
   [:> m/Typography {:component "h1" :variant "h5"} "Registered successful!"]
   [:> m/Grid {:container true}
-     [:> m/Grid {:item true}
-      [:> m/Link {:href "#/" :variant "body2"}
-       "Please sign in"]]])
+   [:> m/Grid {:item true}
+    [:> m/Link {:href "#/" :variant "body2"}
+     "Please sign in"]]])
 
 (defn signup []
   [:> m/Container {:component "main" :maxWidth "xs"}
-     [:div {:style {:display "flex" :flexDirection "column"
+   [:div {:style {:display "flex" :flexDirection "column"
                   :alignItems "center" :marginTop 120}}
-      (if-let [reg-success @(rf/subscribe [:signup-status])]
-        [signup-success]
-        [signup-form])]])
+    (if-let [reg-success @(rf/subscribe [:signup-status])]
+      [signup-success]
+      [signup-form])]])

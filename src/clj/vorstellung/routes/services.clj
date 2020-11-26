@@ -1,16 +1,16 @@
 (ns vorstellung.routes.services
   (:require
-    [reitit.swagger :as swagger]
-    [reitit.swagger-ui :as swagger-ui]
-    [reitit.ring.coercion :as coercion]
-    [reitit.coercion.spec :as spec-coercion]
-    [reitit.ring.middleware.muuntaja :as muuntaja]
-    [reitit.ring.middleware.multipart :as multipart]
-    [reitit.ring.middleware.parameters :as parameters]
-    [vorstellung.middleware.formats :as formats]
-    [vorstellung.middleware.exception :as exception]
-    [ring.util.http-response :refer :all]
-    [clojure.java.io :as io]))
+   [reitit.swagger :as swagger]
+   [reitit.swagger-ui :as swagger-ui]
+   [reitit.ring.coercion :as coercion]
+   [reitit.coercion.spec :as spec-coercion]
+   [reitit.ring.middleware.muuntaja :as muuntaja]
+   [reitit.ring.middleware.multipart :as multipart]
+   [reitit.ring.middleware.parameters :as parameters]
+   [vorstellung.middleware.formats :as formats]
+   [vorstellung.middleware.exception :as exception]
+   [ring.util.http-response :refer :all]
+   [clojure.java.io :as io]))
 
 (defn service-routes []
   ["/api"
@@ -49,7 +49,7 @@
 
    ["/ping"
     {:get (constantly (ok {:message "pong"}))}]
-   
+
 
    ["/math"
     {:swagger {:tags ["math"]}}

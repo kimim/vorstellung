@@ -1,6 +1,7 @@
 (ns vorstellung.grid
-  (:require [reagent.core :as r]
-            ["@material-ui/core" :as m]))
+  (:require
+   [reagent.core :as r]
+   ["@material-ui/core" :as m]))
 
 (defn page []
   [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}

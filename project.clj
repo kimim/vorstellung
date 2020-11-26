@@ -1,7 +1,7 @@
 (defproject vorstellung "0.1.0-SNAPSHOT"
 
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A demo app with Luminusweb and Material UI"
+  :url "http://github.com/kimim/vorstellung"
 
   :dependencies [[buddy/buddy-auth "2.2.0"]
                  [buddy/buddy-core "1.6.0"]
@@ -122,9 +122,6 @@
                   :injections [(require 'pjstadig.humane-test-output)
                                (pjstadig.humane-test-output/activate!)]}
    :project/test {:jvm-opts ["-Dconf=test-config.edn" ]
-                  :resource-paths ["env/test/resources"]
-
-
-                  }
+                  :resource-paths ["env/test/resources"]}
    :profiles/dev {}
    :profiles/test {}})

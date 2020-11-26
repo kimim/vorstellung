@@ -1,8 +1,9 @@
 (ns vorstellung.middleware.exception
-  (:require [clojure.tools.logging :as log]
-            [expound.alpha :as expound]
-            [reitit.coercion :as coercion]
-            [reitit.ring.middleware.exception :as exception]))
+  (:require
+   [clojure.tools.logging :as log]
+   [expound.alpha :as expound]
+   [reitit.coercion :as coercion]
+   [reitit.ring.middleware.exception :as exception]))
 
 (defn coercion-error-handler [status]
   (let [printer (expound/custom-printer {:print-specs? false})]

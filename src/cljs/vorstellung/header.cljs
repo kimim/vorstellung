@@ -1,8 +1,9 @@
 (ns vorstellung.header
-  (:require [reagent.core :as r]
-            ["@material-ui/core" :as m]
-            ["@material-ui/icons"
-             :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
+  (:require
+   [reagent.core :as r]
+   ["@material-ui/core" :as m]
+   ["@material-ui/icons"
+    :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
 
 (defn menu-item [link icon text]
   [:> m/ListItem {:button true :component "a" :href link}

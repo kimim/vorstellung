@@ -1,6 +1,7 @@
 (ns vorstellung.icons
-  (:require ["@material-ui/core" :as m]
-            ["@material-ui/icons" :as icons]))
+  (:require
+   ["@material-ui/core" :as m]
+   ["@material-ui/icons" :as icons]))
 
 (defn page []
   (let [icons (goog.object/getValues icons)

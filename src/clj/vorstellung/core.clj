@@ -1,13 +1,13 @@
 (ns vorstellung.core
   (:require
-    [vorstellung.handler :as handler]
-    [vorstellung.nrepl :as nrepl]
-    [luminus.http-server :as http]
-    [luminus-migrations.core :as migrations]
-    [vorstellung.config :refer [env]]
-    [clojure.tools.cli :refer [parse-opts]]
-    [clojure.tools.logging :as log]
-    [mount.core :as mount])
+   [vorstellung.handler :as handler]
+   [vorstellung.nrepl :as nrepl]
+   [luminus.http-server :as http]
+   [luminus-migrations.core :as migrations]
+   [vorstellung.config :refer [env]]
+   [clojure.tools.cli :refer [parse-opts]]
+   [clojure.tools.logging :as log]
+   [mount.core :as mount])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
