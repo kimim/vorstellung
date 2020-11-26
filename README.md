@@ -27,11 +27,15 @@ export GRAALVM_VERSION=20.3.0
 export GRAALVM_NAME=graalvm-ce-java11-darwin-amd64-$GRAALVM_VERSION
 export GRAALVM_LIB=graalvm-ce-java11-$GRAALVM_VERSION
 export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/download
-wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
-tar -xvzf $GRAALVM_NAME.tar.gz
-sudo mv $GRAALVM_LIB /usr/local/lib
-echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> ~/.bashrc
-source ~/.bashrc
+curl -L $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_PACKAGE.tar.gz \
+     -o $GRAALVM_PACKAGE.tar.gz
+tar -xvzf $GRAALVM_PACKAGE.tar.gz
+sudo mv $GRAALVM_LIB /Library/Java/JavaVirtualMachines/
+echo "export PATH=/Library/Java/JavaVirtualMachines/$GRAALVM_LIB/Contents/Home/bin:$PATH" \
+     >> ~/.bash_profile
+echo "export JAVA_HOME=/Library/Java/JavaVirtualMachines/$GRAALVM_LIB/Contents/Home" \
+     >> ~/.bash_profile
+source ~/.bash_profile
 ```
 
 - Windows
