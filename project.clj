@@ -58,6 +58,7 @@
   :min-lein-version "2.0.0"
 
   :source-paths ["src/clj" "src/cljs" "src/cljc"]
+  :java-source-paths ["java"]
   :test-paths ["test/clj"]
   :resource-paths ["resources" "target/cljsbuild"]
   :target-path "target/%s/"
@@ -114,7 +115,7 @@
                   :plugins      [[com.jakemccrary/lein-test-refresh "0.24.1"]
                                  [jonase/eastwood "0.3.5"]]
 
-
+                  :prep-tasks ["run" ["javac"]]
                   :source-paths ["env/dev/clj"  "env/dev/cljs" "test/cljs" ]
                   :resource-paths ["env/dev/resources"]
                   :repl-options {:init-ns user
