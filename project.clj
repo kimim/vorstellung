@@ -115,7 +115,7 @@
                   :plugins      [[com.jakemccrary/lein-test-refresh "0.24.1"]
                                  [jonase/eastwood "0.3.5"]]
 
-                  :prep-tasks ["run" ["javac"]]
+                  :prep-tasks ["javac"]
                   :source-paths ["env/dev/clj"  "env/dev/cljs" "test/cljs" ]
                   :resource-paths ["env/dev/resources"]
                   :repl-options {:init-ns user
