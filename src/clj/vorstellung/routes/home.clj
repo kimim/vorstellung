@@ -21,7 +21,7 @@
         (-> (redirect "/")
             (assoc :session updated-session)
             (home-page)))
-      (home-page request))))
+      (login-page request))))
 
 (defn signup [request]
   (try

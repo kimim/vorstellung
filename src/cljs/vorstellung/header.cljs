@@ -33,7 +33,7 @@
        [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
         "Die Welt ist Meine Vorstellung"]
        [:> m/Link  {:href "/login"}
-        [:> m/Button {:color "inherit"} "Login"]]]]
+        [:> m/Button {:color "inherit" :style {:color "white"}} "Logout"]]]]
      [:> m/Drawer {:variant "permanent"
                    :classes {:paper (if @open "drawer-open" "drawer-close")}
                    :style {:width (if @open "240px" "55px")
