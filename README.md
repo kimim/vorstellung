@@ -84,6 +84,7 @@ To drop tables:
 
 To watch ClojureScript changes, run:
 
+    lein shadow npm-deps
     lein shadow watch app login
 
 To watch Clojure changes, run:
