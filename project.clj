@@ -31,7 +31,6 @@
                  [metosin/ring-http-response "0.9.1"]
                  [mount "0.1.16"]
                  [nrepl "0.8.0"]
-                 [cider/cider-nrepl "0.25.4"]
                  [org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.773" :scope "provided"]
                  [org.clojure/core.async "1.2.603"]
@@ -41,8 +40,6 @@
                  [org.webjars.npm/bulma "0.9.0"]
                  [org.webjars.npm/material-icons "0.3.1"]
                  [org.webjars/webjars-locator "0.40"]
-                 #_[re-frame "1.0.0"]
-                 #_[reagent "0.10.0"]
                  [re-frame "1.1.2"]
                  [reagent "1.0.0-rc1"]
                  [ring-webjars "0.2.0"]
@@ -54,7 +51,9 @@
                  ]
 
   :npm-deps [["@material-ui/core" "4.11.0"]
-             ["@material-ui/icons" "4.9.1"]]
+             ["@material-ui/icons" "4.9.1"]
+             [bizcharts "4.0.16"]]
+
   :npm-dev-deps [[xmlhttprequest "1.8.0"]]
 
   :min-lein-version "2.0.0"
@@ -66,7 +65,8 @@
   :target-path "target/%s/"
   :main ^:skip-aot vorstellung.core
 
-  :plugins [[lein-shadow "0.2.0"]]
+  :plugins [[lein-shadow "0.2.0"]
+            [cider/cider-nrepl "0.25.4"]]
   :clean-targets ^{:protect false}
   [:target-path "target/cljsbuild"]
   :shadow-cljs

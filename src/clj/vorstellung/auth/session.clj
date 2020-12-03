@@ -23,7 +23,6 @@
         password (get-in request [:params :password])
         session (:session request)
         found-password (authdata (keyword username))]
-    (println password found-password)
     (if (and found-password (= found-password password))
       (assoc session :identity (keyword username))
       session)))

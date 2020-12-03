@@ -10,7 +10,6 @@
    [vorstellung.auth.session :as auth]))
 
 (defn home-page [request]
-  (println request)
   (if (authenticated? request)
     (layout/render request "home.html" {:script "js/app.js"})
     (auth/login request)))
@@ -18,7 +17,7 @@
 (defn signup [request]
   (try
     (db/create-user! (:params request))
-    (signin request)
+    (auth/signin request)
     (catch Exception e
       (print e)
       {:status 400

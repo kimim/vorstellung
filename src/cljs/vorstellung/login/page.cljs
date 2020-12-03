@@ -18,13 +18,18 @@
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "email" :label "Email Address"
          :name "email" :autoComplete "email" :autoFocus true
-         :value (:email user)}]
+         ;; Warning: `value` prop on `input` should not be null. Consider using
+         ;; an empty string to clear the component or `undefined` for
+         ;; uncontrolled components.
+         :value (:email user "")
+         :on-change #(rf/dispatch [:set-user :email (.-value (.-target %))])}]
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "password" :label "Password"
          :name "password" :type "password"
          :autoComplete "current-password"
-         :value (:password user)}]
+         :value (:password user "")
+         :on-change #(rf/dispatch [:set-user :password (.-value (.-target %))])}]
        [:> m/FormControlLabel
         {:control (r/as-element
                    [:> m/Checkbox {:value "remember"
