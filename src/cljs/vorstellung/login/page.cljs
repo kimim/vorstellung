@@ -13,7 +13,7 @@
       [:> m/Avatar {:style {:backgroundColor "red" :margin 20}}
        [:> LockOutlined]]
       [:> m/Typography {:component "h1" :variant "h5"} "Sign in"]
-      [:form {:action "/signin" :method "POST"}
+      [:form {:action "/login" :method "POST"}
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "email" :label "Email Address"

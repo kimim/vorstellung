@@ -1,27 +1,19 @@
 (ns vorstellung.routes.home
   (:require
-   [vorstellung.layout :as layout]
-   [vorstellung.db.core :as db]
    [clojure.java.io :as io]
-   [vorstellung.middleware :as middleware]
    [ring.util.response :refer [redirect]]
-   [ring.util.http-response :as response]))
+   [ring.util.http-response :as response]
+   [buddy.auth :refer [authenticated?]]
+   [vorstellung.db.core :as db]
+   [vorstellung.layout :as layout]
+   [vorstellung.middleware :as middleware]
+   [vorstellung.auth.session :as auth]))
 
 (defn home-page [request]
-  (layout/render request "home.html" {:script "js/app.js"}))
-
-(defn login-page [request]
-  (layout/render request "home.html" {:script "/js/login.js"}))
-
-(defn signin [request]
-  (let [user (db/get-user (:params request))
-        session (:session request)]
-    (if (= (:password user) (get-in request [:params :password]))
-      (let [updated-session (assoc session :identity (keyword (:email user)))]
-        (-> (redirect "/")
-            (assoc :session updated-session)
-            (home-page)))
-      (login-page request))))
+  (println request)
+  (if (authenticated? request)
+    (layout/render request "home.html" {:script "js/app.js"})
+    (auth/login request)))
 
 (defn signup [request]
   (try
@@ -35,11 +27,12 @@
 (defn home-routes []
   [""
    {:middleware [#_middleware/wrap-csrf
+                 auth/wrap-auth
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/login" {:get login-page
-              :post signup}]
-   ["/signin" {:post signin}]
+   ["/login" {:get auth/login
+              :post auth/signin}]
+   ["/logout" {:get auth/logout}]
    ["/signup" {:post signup}]
    ["/docs" {:get (fn [_]
                     (-> (response/ok (-> "docs/docs.md" io/resource slurp))
