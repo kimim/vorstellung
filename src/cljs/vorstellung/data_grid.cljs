@@ -2,7 +2,8 @@
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]
-   ["@material-ui/data-grid" :as dg]))
+   ["@material-ui/data-grid" :as dg]
+   [vorstellung.utils :as utils]))
 
 (def rows  (for [i (range 1 101)]
              {:id i, :lastName "Snow", :firstName "Jon", :age (rand-int 35)}))
@@ -11,6 +12,22 @@
            {:field :firstName :width 180}
            {:field :lastName :width 180}
            {:field :age :width 80}])
+
+(defn export-rows [rows]
+  (let [header-str (->> (first rows)
+                    (keys)
+                    (map name)
+                    (interpose ",")
+                    (reduce str))
+        rows-str (->> rows
+                      (map vals)
+                      (map (fn [x] (interpose "," x)))
+                      (map (fn [x] (reduce str x)))
+                      (interpose "\n")
+                      (reduce str))]
+    (utils/download-data
+     (str header-str "\n" rows-str)
+     "exported-data.csv" "application/vnd.ms-excel")))
 
 (defn people []
   [:div {:style {:height "90vh", :width "100%"}}
@@ -21,10 +38,14 @@
       "Load"]
      [:> m/Button {:style {:margin "5px 5px 5px 10px"}
                    :type "button" :variant "contained" :color "primary"}
-      "Send"]]
+      "Send"]
+     [:> m/Button {:style {:margin "5px 5px 5px 10px"}
+                   :type "button" :variant "contained" :color "primary"
+                   :on-click #(export-rows rows)}
+      "Export"]]
     [:> m/TableContainer {:style {:height "80vh", :width "auto"}}
-     [:> dg/DataGrid {:rows rows :columns cols :checkboxSelection true :autoPageSize true}
-      ]]]])
+     [:> dg/DataGrid {:rows rows :columns cols :checkboxSelection true :autoPageSize true
+                      :exportAllData true}]]]])
 
 (defn page []
   [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
