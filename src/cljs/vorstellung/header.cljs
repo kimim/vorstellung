@@ -4,13 +4,13 @@
    ["@material-ui/core" :as m]
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
-   ["@material-ui/icons/Info" :default Info]
+   ["@material-ui/icons/ContactSupportOutlined" :default ContactSupportOutlined]
    ["@material-ui/icons/Menu" :default Menu]
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
    ["@material-ui/icons/ChevronLeft" :default ChevronLeft]
-   ["@material-ui/icons/Toys" :default Toys]
+   ["@material-ui/icons/ToysOutlined" :default ToysOutlined]
    ["@material-ui/icons/ViewComfy" :default ViewComfy]
-   ["@material-ui/icons/BarChart" :default BarChart]
+   ["@material-ui/icons/InsertChartOutlined" :default InsertChartOutlined]
    ["@material-ui/icons/GridOn" :default GridOn]
    #_["@material-ui/icons"
     :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
@@ -51,8 +51,8 @@
        #_[:> m/ListItem {:button true :component "a" :href "#/icons"}
         [:> m/ListItemIcon [:> ico/Apps]]
         [:> m/ListItemText {:primary "Icons"}]]
-       [menu-item "#/icons" Toys "Icons"]
+       [menu-item "#/icons" ToysOutlined "Icons"]
        [menu-item "#/grid" ViewComfy "Grid Layout"]
-       [menu-item "#/bizcharts" BarChart "BizCharts"]
+       [menu-item "#/bizcharts" InsertChartOutlined "BizCharts"]
        [menu-item "#/data-grid" GridOn "Data Grid"]
-       [menu-item "#/about" Info "About"]]]]))
+       [menu-item "#/about" ContactSupportOutlined "About"]]]]))
