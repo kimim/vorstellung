@@ -44,4 +44,4 @@
     [:> m/Grid {:container true :spacing 3}
      [:> m/Grid {:item true :xs 12 :sm 6 :lg 3}
       [:> m/Paper
-       (city)]]]]])
+       [city]]]]]])

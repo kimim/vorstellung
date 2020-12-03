@@ -9,8 +9,9 @@
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
    ["@material-ui/icons/ChevronLeft" :default ChevronLeft]
    ["@material-ui/icons/Toys" :default Toys]
-   ["@material-ui/icons/ViewModule" :default ViewModule]
-   ["@material-ui/icons/InsertChart" :default InsertChart]
+   ["@material-ui/icons/ViewComfy" :default ViewComfy]
+   ["@material-ui/icons/BarChart" :default BarChart]
+   ["@material-ui/icons/GridOn" :default GridOn]
    #_["@material-ui/icons"
     :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
 
@@ -51,6 +52,7 @@
         [:> m/ListItemIcon [:> ico/Apps]]
         [:> m/ListItemText {:primary "Icons"}]]
        [menu-item "#/icons" Toys "Icons"]
-       [menu-item "#/grid" ViewModule "Grid Layout"]
-       [menu-item "#/bizcharts" InsertChart "BizCharts"]
+       [menu-item "#/grid" ViewComfy "Grid Layout"]
+       [menu-item "#/bizcharts" BarChart "BizCharts"]
+       [menu-item "#/data-grid" GridOn "Data Grid"]
        [menu-item "#/about" Info "About"]]]]))

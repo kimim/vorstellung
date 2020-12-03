@@ -22,7 +22,7 @@
          ;; an empty string to clear the component or `undefined` for
          ;; uncontrolled components.
          :value (:email user "")
-         :on-change #(rf/dispatch [:set-user :email (.-value (.-target %))])}]
+         :on-change #(rf/dispatch [:set-user :email (.. % -target -value)])}]
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "password" :label "Password"

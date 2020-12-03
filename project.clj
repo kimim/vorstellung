@@ -52,7 +52,9 @@
 
   :npm-deps [["@material-ui/core" "4.11.0"]
              ["@material-ui/icons" "4.9.1"]
-             [bizcharts "4.0.16"]]
+             [bizcharts "4.0.16"]
+             [process "0.11.10"]
+             ["@material-ui/data-grid" "4.0.0-alpha.11"]]
 
   :npm-dev-deps [[xmlhttprequest "1.8.0"]]
 
