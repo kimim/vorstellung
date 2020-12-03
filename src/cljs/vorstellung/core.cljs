@@ -14,7 +14,8 @@
    [vorstellung.ajax :as ajax]
    [vorstellung.header :as header]
    [vorstellung.icons :as icons]
-   [vorstellung.grid :as grid])
+   [vorstellung.grid :as grid]
+   [vorstellung.bizcharts :as bizcharts])
   (:import goog.History))
 
 (defn about-page []
@@ -43,7 +44,9 @@
      ["/icons" {:name :icons
                 :view icons/page}]
      ["/grid" {:name :grid
-                :view grid/page}]
+               :view grid/page}]
+     ["/bizcharts" {:name :bizcharts
+                    :view bizcharts/page}]
      ["/about" {:name :about
                 :view #'about-page}]]))
 

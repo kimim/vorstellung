@@ -84,7 +84,6 @@
   (fn [db [_ field value]]
     (assoc-in db [:user field] value)))
 
-
 (rf/reg-sub
   :user
   (fn [db _]
