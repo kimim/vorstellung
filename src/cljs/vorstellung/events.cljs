@@ -109,3 +109,18 @@
                   :response-format (ajax/json-response-format)
                   :on-success      [:signup-status true]
                   :on-failure      [:signup-status false]}}))
+
+(rf/reg-event-db
+ :upload-success
+ (fn [db [_ status]]
+   (assoc db :upload-status status)))
+
+(rf/reg-event-fx
+  :upload
+  (fn [_ [_ data]]
+    {:http-xhrio {:method          :post
+                  :uri             "/upload"
+                  :body            data
+                  :response-format (ajax/json-response-format)
+                  :on-success      [:upload-success]
+                  :on-failure      [:common/set-error]}}))

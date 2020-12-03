@@ -54,7 +54,8 @@
              ["@material-ui/icons" "4.9.1"]
              [bizcharts "4.0.16"]
              [process "0.11.10"]
-             ["@material-ui/data-grid" "4.0.0-alpha.11"]]
+             ["@material-ui/data-grid" "4.0.0-alpha.11"]
+             [react-dropzone-uploader]]
 
   :npm-dev-deps [[xmlhttprequest "1.8.0"]]
 
@@ -69,8 +70,7 @@
 
   :plugins [[lein-shadow "0.2.0"]
             [cider/cider-nrepl "0.25.4"]]
-  :clean-targets ^{:protect false}
-  [:target-path "target/cljsbuild"]
+  :clean-targets ^{:protect false} [:target-path "target/cljsbuild"]
   :shadow-cljs
   {:nrepl {:port 7002}
    :builds

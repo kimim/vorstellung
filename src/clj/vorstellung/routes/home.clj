@@ -7,7 +7,8 @@
    [vorstellung.db.core :as db]
    [vorstellung.layout :as layout]
    [vorstellung.middleware :as middleware]
-   [vorstellung.auth.session :as auth]))
+   [vorstellung.auth.session :as auth]
+   [vorstellung.upload :as upload]))
 
 (defn home-page [request]
   (if (authenticated? request)
@@ -33,6 +34,7 @@
               :post auth/signin}]
    ["/logout" {:get auth/logout}]
    ["/signup" {:post signup}]
+   ["/upload" {:post upload/upload}]
    ["/docs" {:get (fn [_]
                     (-> (response/ok (-> "docs/docs.md" io/resource slurp))
                         (response/header "Content-Type" "text/plain; charset=utf-8")))}]])

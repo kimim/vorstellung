@@ -16,7 +16,8 @@
    [vorstellung.icons :as icons]
    [vorstellung.grid :as grid]
    [vorstellung.bizcharts :as bizcharts]
-   [vorstellung.data-grid :as data-grid])
+   [vorstellung.data-grid :as data-grid]
+   [vorstellung.upload :as upload])
   (:import goog.History))
 
 (defn about-page []
@@ -50,6 +51,8 @@
                     :view bizcharts/page}]
      ["/data-grid" {:name :data-grid
                     :view data-grid/page}]
+     ["/upload" {:name :file-upload
+                 :view upload/page}]
      ["/about" {:name :about
                 :view #'about-page}]]))
 

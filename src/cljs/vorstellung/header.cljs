@@ -12,6 +12,7 @@
    ["@material-ui/icons/ViewComfy" :default ViewComfy]
    ["@material-ui/icons/InsertChartOutlined" :default InsertChartOutlined]
    ["@material-ui/icons/GridOn" :default GridOn]
+   ["@material-ui/icons/BackupOutlined" :default BackupOutlined]
    #_["@material-ui/icons"
     :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
 
@@ -55,4 +56,5 @@
        [menu-item "#/grid" ViewComfy "Grid Layout"]
        [menu-item "#/bizcharts" InsertChartOutlined "BizCharts"]
        [menu-item "#/data-grid" GridOn "Data Grid"]
+       [menu-item "#/upload" BackupOutlined "File Uploader"]
        [menu-item "#/about" ContactSupportOutlined "About"]]]]))
