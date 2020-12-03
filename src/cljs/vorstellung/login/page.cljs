@@ -21,14 +21,14 @@
          ;; Warning: `value` prop on `input` should not be null. Consider using
          ;; an empty string to clear the component or `undefined` for
          ;; uncontrolled components.
-         :value (:email user "")
+         :value (:email user "user") ;; TODO: for testing only
          :on-change #(rf/dispatch [:set-user :email (.. % -target -value)])}]
        [:> m/TextField
         {:variant "outlined" :margin "normal" :required true
          :fullWidth true :id "password" :label "Password"
          :name "password" :type "password"
          :autoComplete "current-password"
-         :value (:password user "")
+         :value (:password user "pass") ;; TODO: for testing only
          :on-change #(rf/dispatch [:set-user :password (.-value (.-target %))])}]
        [:> m/FormControlLabel
         {:control (r/as-element

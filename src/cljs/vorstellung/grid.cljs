@@ -10,14 +10,14 @@
      (for [i (range 1 5)]
        ^{:key i}
        [:> m/Grid {:item true :xs 3}
-        [:> m/Paper (str i "/" 4)]])
+        [:> m/Paper {:style {:height "20vh"}} (str i "/" 4)]])
      (for [i (range 1 4)]
        ^{:key i}
        [:> m/Grid {:item true :xs 4}
-        [:> m/Paper (str i "/" 3)]])
+        [:> m/Paper {:style {:height "20vh"}} (str i "/" 3)]])
      (for [i (range 1 3)]
        ^{:key i}
        [:> m/Grid {:item true :xs 6}
-        [:> m/Paper (str i "/" 2)]])
+        [:> m/Paper {:style {:height "20vh"}} (str i "/" 2)]])
      [:> m/Grid {:item true :xs 12}
-      [:> m/Paper 1]]]]])
+      [:> m/Paper {:style {:height "20vh"}} 1]]]]])
