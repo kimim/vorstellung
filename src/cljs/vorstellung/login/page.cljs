@@ -3,7 +3,7 @@
    [reagent.core :as r]
    [re-frame.core :as rf]
    ["@material-ui/core" :as m]
-   ["@material-ui/icons" :refer [LockOutlined]]))
+   ["@material-ui/icons/LockOutlined" :default LockOutlined]))
 
 (defn signin []
   (let [user @(rf/subscribe [:user])]
