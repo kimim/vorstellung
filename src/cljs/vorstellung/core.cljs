@@ -12,12 +12,7 @@
    [clojure.string :as string]
    [vorstellung.events]
    [vorstellung.ajax :as ajax]
-   [vorstellung.header :as header]
-   [vorstellung.icons :as icons]
-   [vorstellung.grid :as grid]
-   [vorstellung.bizcharts :as bizcharts]
-   [vorstellung.data-grid :as data-grid]
-   [vorstellung.upload :as upload])
+   [vorstellung.header :as header])
   (:import goog.History))
 
 (defn about-page []
@@ -25,7 +20,7 @@
    [:img {:src "/img/warning_clojure.png"}]])
 
 (defn home-page []
-  [:section.section>div.container>div.content
+  [:section.section>div.container>div.content {:style {:padding "64px"}}
    (when-let [docs @(rf/subscribe [:docs])]
      [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
 
@@ -41,18 +36,8 @@
 (def router
   (reitit/router
     [["/" {:name        :home
-           :view        icons/page
+           :view        home-page
            :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
-     ["/icons" {:name :icons
-                :view icons/page}]
-     ["/grid" {:name :grid
-               :view grid/page}]
-     ["/bizcharts" {:name :bizcharts
-                    :view bizcharts/page}]
-     ["/data-grid" {:name :data-grid
-                    :view data-grid/page}]
-     ["/upload" {:name :file-upload
-                 :view upload/page}]
      ["/about" {:name :about
                 :view #'about-page}]]))
 

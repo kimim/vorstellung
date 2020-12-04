@@ -10,9 +10,9 @@
    [vorstellung.auth.session :as auth]
    [vorstellung.upload :as upload]))
 
-(defn home-page [request]
+(defn home-page [request app]
   (if (authenticated? request)
-    (layout/render request "home.html" {:script "js/app.js"})
+    (layout/render request "home.html" {:script app})
     (auth/login request)))
 
 (defn signup [request]
@@ -29,12 +29,16 @@
    {:middleware [#_middleware/wrap-csrf
                  auth/wrap-auth
                  middleware/wrap-formats]}
-   ["/" {:get home-page}]
+   ["/"         {:get #(home-page % "/js/app.js")}]
+   ["/icons"    {:get #(home-page % "/js/icons.js")}]
+   ["/charts"   {:get #(home-page % "/js/charts.js")}]
+   ["/material"
+    ["/"        {:get #(home-page % "/js/material.js")}]]
    ["/login" {:get auth/login
               :post auth/signin}]
    ["/logout" {:get auth/logout}]
    ["/signup" {:post signup}]
    ["/upload" {:post upload/upload}]
    ["/docs" {:get (fn [_]
-                    (-> (response/ok (-> "docs/docs.md" io/resource slurp))
+                    (-> (response/ok (-> "README.md" #_io/resource slurp))
                         (response/header "Content-Type" "text/plain; charset=utf-8")))}]])

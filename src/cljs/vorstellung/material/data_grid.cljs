@@ -1,4 +1,4 @@
-(ns vorstellung.data-grid
+(ns vorstellung.material.data-grid
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]

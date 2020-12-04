@@ -1,4 +1,4 @@
-(ns vorstellung.bizcharts
+(ns vorstellung.charts.bizcharts
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]

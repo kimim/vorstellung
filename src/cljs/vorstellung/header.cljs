@@ -49,12 +49,9 @@
             [:> ChevronRight])]]
       [:> m/Divider]
       [:> m/List {:style {:width (if @open "240px" "55px")}}
-       #_[:> m/ListItem {:button true :component "a" :href "#/icons"}
-        [:> m/ListItemIcon [:> ico/Apps]]
-        [:> m/ListItemText {:primary "Icons"}]]
-       [menu-item "#/icons" ToysOutlined "Icons"]
-       [menu-item "#/grid" ViewComfy "Grid Layout"]
-       [menu-item "#/bizcharts" InsertChartOutlined "BizCharts"]
-       [menu-item "#/data-grid" GridOn "Data Grid"]
-       [menu-item "#/upload" BackupOutlined "File Uploader"]
-       [menu-item "#/about" ContactSupportOutlined "About"]]]]))
+       [menu-item "/icons" ToysOutlined "Icons"]
+       [menu-item "/material/#/grid" ViewComfy "Grid Layout"]
+       [menu-item "/material/#/data-grid" GridOn "Data Grid"]
+       [menu-item "/material/#/upload" BackupOutlined "File Uploader"]
+       [menu-item "/charts" InsertChartOutlined "BizCharts"]
+       [menu-item "/#/about" ContactSupportOutlined "About"]]]]))

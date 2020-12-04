@@ -1,4 +1,4 @@
-(ns vorstellung.grid
+(ns vorstellung.material.grid
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]))

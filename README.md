@@ -85,13 +85,19 @@ To drop tables:
 To watch ClojureScript changes, run:
 
     lein shadow npm-deps
-    lein shadow watch app login
+    lein shadow watch app login icons charts material
 
 To watch Clojure changes, run:
 
     lein run
 
 And then visit: http://localhost:3030
+
+## Create New APP
+
+1. Add new shadow-cljs build under `project.clj - :shadow-cljs - :builds`
+2. Add init entry point under `env/dev/cljs/vorstellung` and `env/prod/cljs/vorstellung`
+3. Add entry in `home-routes` at `src/clj/vorstellung/home.clj`
 
 ## License
 

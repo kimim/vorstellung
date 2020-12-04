@@ -1,6 +1,7 @@
-(ns vorstellung.icons
+(ns vorstellung.icons.icons
   (:require
    ["@material-ui/core" :as m]
+   ;; https://material-ui.com/components/material-icons/
    ["@material-ui/icons" :as icons]))
 
 (defn page []

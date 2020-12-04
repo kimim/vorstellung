@@ -71,32 +71,6 @@
   :plugins [[lein-shadow "0.2.0"]
             [cider/cider-nrepl "0.25.4"]]
   :clean-targets ^{:protect false} [:target-path "target/cljsbuild"]
-  :shadow-cljs
-  {:nrepl {:port 7002}
-   :builds
-   {:app
-    {:target :browser
-     :output-dir "target/cljsbuild/public/js"
-     :asset-path "/js"
-     :modules {:app {:entries [vorstellung.app]}}
-     :devtools
-     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
-     :dev
-     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
-    :login
-    {:target :browser
-     :output-dir "target/cljsbuild/public/js"
-     :asset-path "/js"
-     :modules {:login {:entries [vorstellung.login]}}
-     :devtools
-     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
-     :dev
-     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
-    :test
-    {:target :node-test
-     :output-to "target/test/test.js"
-     :autorun true}}}
-
   :profiles
   {:uberjar {:omit-source true
              :prep-tasks ["compile" ["shadow" "release" "app" "login"]]
@@ -129,4 +103,57 @@
    :project/test {:jvm-opts ["-Dconf=test-config.edn" ]
                   :resource-paths ["env/test/resources"]}
    :profiles/dev {}
-   :profiles/test {}})
+   :profiles/test {}}
+
+  :shadow-cljs
+  {:nrepl {:port 7002}
+   :builds
+   {:app
+    {:target :browser
+     :output-dir "target/cljsbuild/public/js"
+     :asset-path "/js"
+     :modules {:app {:entries [vorstellung.app]}}
+     :devtools
+     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+     :dev
+     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+    :login
+    {:target :browser
+     :output-dir "target/cljsbuild/public/js"
+     :asset-path "/js"
+     :modules {:login {:entries [vorstellung.login]}}
+     :devtools
+     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+     :dev
+     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+    :charts
+    {:target :browser
+     :output-dir "target/cljsbuild/public/js"
+     :asset-path "/js"
+     :modules {:charts {:entries [vorstellung.charts]}}
+     :devtools
+     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+     :dev
+     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+    :icons
+    {:target :browser
+     :output-dir "target/cljsbuild/public/js"
+     :asset-path "/js"
+     :modules {:icons {:entries [vorstellung.icons]}}
+     :devtools
+     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+     :dev
+     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+    :material
+    {:target :browser
+     :output-dir "target/cljsbuild/public/js"
+     :asset-path "/js"
+     :modules {:material {:entries [vorstellung.material]}}
+     :devtools
+     {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+     :dev
+     {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+    :test
+    {:target :node-test
+     :output-to "target/test/test.js"
+     :autorun true}}})
