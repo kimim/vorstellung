@@ -4,6 +4,8 @@
    ["@material-ui/core" :as m]
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
+   ["@material-ui/icons/ExitToApp" :default ExitToApp]
+
    ["@material-ui/icons/ContactSupportOutlined" :default ContactSupportOutlined]
    ["@material-ui/icons/Menu" :default Menu]
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
@@ -36,7 +38,8 @@
        [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
         "Die Welt ist Meine Vorstellung"]
        [:> m/Link  {:href "/logout"}
-        [:> m/Button {:color "inherit" :style {:color "white"}} "Logout"]]]]
+        [:> m/Avatar {:style {:backgroundColor "orange"}}
+         [:> ExitToApp]]]]]
      [:> m/Drawer {:variant "permanent"
                    :classes {:paper (if @open "drawer-open" "drawer-close")}
                    :style {:width (if @open "240px" "55px")

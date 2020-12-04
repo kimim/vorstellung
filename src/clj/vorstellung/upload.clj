@@ -1,8 +1,15 @@
-(ns vorstellung.upload)
+(ns vorstellung.upload
+  (:require
+   [clojure.java.io :as io]))
 
-(defn upload [request]
-  (println (:body request))
-  #_(io/copy (:tempfile file) (io/file (str "files/" (:filename file))))
-  {:status 200
-   :body {:name "file"
-          :size 2}})
+(defn upload [{{{:keys [filename tempfile size]} "file"} :multipart-params}]
+  (try
+    (println filename)
+    (let [dir (io/file "files/")]
+      (when-not (.exists dir) (.mkdir dir)))
+    (io/copy tempfile (io/file (str "files/" filename)))
+    {:status 200
+     :body {:name filename
+            :size size}}
+    (catch Exception e {:status 500
+                        :body (str (.getMessage e))})))
