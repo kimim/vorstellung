@@ -13,7 +13,8 @@
    [vorstellung.header :as header]
    [vorstellung.material.data-grid :as data-grid]
    [vorstellung.material.grid :as layout]
-   [vorstellung.material.upload :as upload])
+   [vorstellung.material.upload :as upload]
+   [vorstellung.material.picker :as picker])
   (:import goog.History))
 
 (defn navigate! [match _]
@@ -27,7 +28,9 @@
      ["/grid"       {:name      :layout
                      :view      layout/page}]
      ["/upload"     {:name      :upload
-                     :view      upload/page}]])
+                     :view      upload/page}]
+     ["/picker"     {:name      :picker
+                     :view      picker/page}]])
    navigate!
    {}))
 
