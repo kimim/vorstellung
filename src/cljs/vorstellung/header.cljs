@@ -1,6 +1,7 @@
 (ns vorstellung.header
   (:require
    [reagent.core :as r]
+   [re-frame.core :as rf]
    ["@material-ui/core" :as m]
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
@@ -77,3 +78,10 @@
                                 :top "9px"}
                            :on-click #(swap! hide not)}
        [:> FullscreenExit]])))
+
+(defn page []
+  (if-let [page @(rf/subscribe [:common/page])]
+    [:div {:style {:display "flex"}}
+     [navbar]
+     [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
+      [page]]]))

@@ -25,13 +25,7 @@
    navigate!
    {}))
 
-(defn page []
-  (if-let [page @(rf/subscribe [:common/page])]
-    [:div {:style {:display "flex"}}
-     [header/navbar]
-     [page]]))
-
 (defn init! []
   (start-router!)
   (rf/clear-subscription-cache!)
-  (rdom/render [#'page] (.getElementById js/document "app")))
+  (rdom/render [#'header/page] (.getElementById js/document "app")))

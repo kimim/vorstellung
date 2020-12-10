@@ -19,9 +19,7 @@
        [:> m/Typography @message]])))
 
 (defn page []
-  [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
-   [:div
-    [:> m/Grid {:container true :spacing 3}
-     [:> m/Grid {:item true :xs 6 :sm 6 :lg 6}
-      [:> m/Paper
-       [uploader]]]]]])
+  [:> m/Grid {:container true :spacing 3}
+   [:> m/Grid {:item true :xs 6 :sm 6 :lg 6}
+    [:> m/Paper
+     [uploader]]]])

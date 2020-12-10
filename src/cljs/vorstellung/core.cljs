@@ -16,19 +16,13 @@
   (:import goog.History))
 
 (defn about-page []
-  [:div {:style {:padding "88px 24px 24px 24px"}}
+  [:div
    [:img {:src "/img/warning_clojure.png"}]])
 
 (defn home-page []
-  [:section.section>div.container>div.content {:style {:padding "64px"}}
+  [:section.section>div.container>div.content
    (when-let [docs @(rf/subscribe [:docs])]
      [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
-
-(defn page []
-  (if-let [page @(rf/subscribe [:common/page])]
-    [:div {:style {:display "flex"}}
-     [header/navbar]
-     [page]]))
 
 (defn navigate! [match _]
   (rf/dispatch [:common/navigate match]))
@@ -51,7 +45,7 @@
 ;; Initialize app
 (defn ^:dev/after-load mount-components []
   (rf/clear-subscription-cache!)
-  (rdom/render [#'page] (.getElementById js/document "app")))
+  (rdom/render [#'header/page] (.getElementById js/document "app")))
 
 (defn init! []
   (start-router!)

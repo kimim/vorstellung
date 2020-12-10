@@ -48,8 +48,6 @@
                       :exportAllData true}]]]])
 
 (defn page []
-  [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
-   [:div
-    [:> m/Grid {:container true :spacing 3}
-     [:> m/Grid {:item true :xs 12 :sm 12 :lg 12}
-      [people]]]]])
+  [:> m/Grid {:container true :spacing 3}
+   [:> m/Grid {:item true :xs 12 :sm 12 :lg 12}
+    [people]]])
