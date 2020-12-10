@@ -68,9 +68,14 @@
          [menu-item "/material/#/picker" Today "Data Picker"]
          [menu-item "/charts" InsertChartOutlined "BizCharts"]
          [menu-item "/#/about" ContactSupportOutlined "About"]]]]
-      [:> m/IconButton {:style {:color "blue" :position "absolute" :right "72px" :top "9px"}
-                        :on-click #(rf/dispatch [:common/set-navbar true])}
-       [:> FullscreenExit]])))
+      [:div
+       [:> m/Fab {:size "small"
+                  :style {;; same location as maximize button
+                          :position "absolute" :right "94px" :top "12px"
+                          :z-index "100" ;; avoid covered by page contents
+                          }
+                  :on-click #(rf/dispatch [:common/set-navbar true])}
+        [:> FullscreenExit]]])))
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
