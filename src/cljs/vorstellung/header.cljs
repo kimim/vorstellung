@@ -21,7 +21,7 @@
 (defn menu-item [link icon text]
   [:> m/ListItem {:button true :component "a" :href link}
    [:> m/ListItemIcon [:> icon]]
-   [:> m/ListItemText {:primary text}]])
+   [:> m/Typography {:variant "inherit" :noWrap true} text]])
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
