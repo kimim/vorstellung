@@ -26,6 +26,16 @@
     {:common/navigate-fx! [url-key params query]}))
 
 (rf/reg-event-db
+ :common/set-navbar
+ (fn [db [_ status]]
+   (assoc db :common/navbar status)))
+
+(rf/reg-sub
+ :common/navbar
+ (fn [db _]
+   (:common/navbar db)))
+
+(rf/reg-event-db
   :set-docs
   (fn [db [_ docs]]
     (assoc db :docs docs)))

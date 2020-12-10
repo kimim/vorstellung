@@ -28,11 +28,9 @@
    [:> m/Typography {:variant "inherit" :noWrap true} text]])
 
 (defn navbar []
-  (r/with-let [open (r/atom false)
-               hide (r/atom false)]
-    (condp
-      = @hide
-      false
+  (r/with-let [open (r/atom false)]
+    (if (or (nil? @(rf/subscribe [:common/navbar]))
+            @(rf/subscribe [:common/navbar]))
       [:div
        [:> m/AppBar {:position "fixed"
                      :style {:width (if @open "calc(100% - 240px)" "100%")
@@ -46,7 +44,7 @@
          [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
           "Die Welt ist Meine Vorstellung"]
          [:> m/IconButton {:style {:color "white"}
-                           :on-click #(swap! hide not)}
+                           :on-click #(rf/dispatch [:common/set-navbar false])}
           [:> Fullscreen]]
          [:> m/Link  {:href "/logout"}
           [:> m/IconButton {:style {:color "white"}}
@@ -70,18 +68,16 @@
          [menu-item "/material/#/picker" Today "Data Picker"]
          [menu-item "/charts" InsertChartOutlined "BizCharts"]
          [menu-item "/#/about" ContactSupportOutlined "About"]]]]
-
-      true
-      [:> m/IconButton {:style {:color "blue"
-                                :position "absolute"
-                                :right "72px"
-                                :top "9px"}
-                           :on-click #(swap! hide not)}
+      [:> m/IconButton {:style {:color "blue" :position "absolute" :right "72px" :top "9px"}
+                        :on-click #(rf/dispatch [:common/set-navbar true])}
        [:> FullscreenExit]])))
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
     [:div {:style {:display "flex"}}
      [navbar]
-     [:main {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
+     [:main (if (or (nil? @(rf/subscribe [:common/navbar]))
+                    @(rf/subscribe [:common/navbar]))
+              {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
+              {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
       [page]]]))
