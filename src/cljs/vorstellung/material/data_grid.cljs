@@ -48,6 +48,7 @@
                       :exportAllData true}]]]])
 
 (defn page []
-  [:> m/Grid {:container true :spacing 3}
-   [:> m/Grid {:item true :xs 12 :sm 12 :lg 12}
-    [people]]])
+  [:> m/Container {:max-width "lg" :disableGutters true}
+   [:> m/Grid {:container true :spacing 3}
+    [:> m/Grid {:item true :xs 12 :sm 12 :lg 12}
+     [people]]]])

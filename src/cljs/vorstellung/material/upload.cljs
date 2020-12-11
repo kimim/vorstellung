@@ -19,7 +19,8 @@
        [:> m/Typography @message]])))
 
 (defn page []
-  [:> m/Grid {:container true :spacing 3}
-   [:> m/Grid {:item true :xs 6 :sm 6 :lg 6}
-    [:> m/Paper
-     [uploader]]]])
+  [:> m/Container {:max-width "lg" :disableGutters true}
+   [:> m/Grid {:container true :spacing 3}
+    [:> m/Grid {:item true :xs 6 :sm 6 :lg 6}
+     [:> m/Paper
+      [uploader]]]]])

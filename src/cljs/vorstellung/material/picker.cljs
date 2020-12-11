@@ -41,7 +41,8 @@
           :InputLabelProps {:shrink true}}]]]]]]])
 
 (defn page []
-  [:> m/Grid {:container true :spacing 3}
-   [:> m/Grid {:item true :xs 6 :sm 3 :lg 3}
-    [:> m/Paper
-     [native-picker]]]])
+  [:> m/Container {:max-width "lg" :disableGutters true}
+   [:> m/Grid {:container true :spacing 3}
+    [:> m/Grid {:item true :xs 12 :sm 6 :lg 6}
+     [:> m/Paper
+      [native-picker]]]]])
