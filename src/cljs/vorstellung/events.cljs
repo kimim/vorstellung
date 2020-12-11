@@ -2,6 +2,7 @@
   (:require
    [re-frame.core :as rf]
    [ajax.core :as ajax]
+   [ajax.edn :refer [edn-request-format edn-response-format]]
    [reitit.frontend.easy :as rfe]
    [reitit.frontend.controllers :as rfc]))
 
@@ -26,14 +27,14 @@
     {:common/navigate-fx! [url-key params query]}))
 
 (rf/reg-event-db
- :common/set-navbar
+ :common/set-navbar-visible?
  (fn [db [_ status]]
-   (assoc db :common/navbar status)))
+   (assoc db :common/navbar-visible? status)))
 
 (rf/reg-sub
- :common/navbar
+ :common/navbar-visible?
  (fn [db _]
-   (:common/navbar db)))
+   (:common/navbar-visible? db)))
 
 (rf/reg-event-db
   :set-docs
@@ -47,6 +48,20 @@
                   :uri             "/docs"
                   :response-format (ajax/raw-response-format)
                   :on-success       [:set-docs]}}))
+
+(rf/reg-event-db
+  :set-edn
+  (fn [db [_ edn]]
+    (assoc db :edn edn)))
+
+(rf/reg-event-fx
+  :fetch-edn
+  (fn [_ _]
+    {:http-xhrio {:method          :get
+                  :uri             "/api/edn"
+                  :response-format (edn-response-format)
+                  :on-success       [:set-edn]
+                  :on-failure       [:set-edn]}}))
 
 (rf/reg-event-db
   :common/set-error

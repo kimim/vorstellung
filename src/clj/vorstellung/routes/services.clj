@@ -50,6 +50,10 @@
    ["/ping"
     {:get (constantly (ok {:message "pong"}))}]
 
+   ["/edn"
+    {:get {:handler
+           {:status 200
+            :body {:A 123}}}}]
 
    ["/math"
     {:swagger {:tags ["math"]}}

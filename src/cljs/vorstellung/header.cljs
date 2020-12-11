@@ -29,8 +29,8 @@
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
-    (if (or (nil? @(rf/subscribe [:common/navbar]))
-            @(rf/subscribe [:common/navbar]))
+    (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
+            @(rf/subscribe [:common/navbar-visible?]))
       [:div
        [:> m/AppBar {:position "fixed"
                      :style {:width (if @open "calc(100% - 240px)" "100%")
@@ -44,7 +44,7 @@
          [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
           "Die Welt ist Meine Vorstellung"]
          [:> m/IconButton {:style {:color "white"}
-                           :on-click #(rf/dispatch [:common/set-navbar false])}
+                           :on-click #(rf/dispatch [:common/set-navbar-visible? false])}
           [:> Fullscreen]]
          [:> m/Link  {:href "/logout"}
           [:> m/IconButton {:style {:color "white"}}
@@ -71,18 +71,18 @@
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button
-                          :position "absolute" :right "94px" :top "12px"
+                          :position "absolute" :right "75px" :top "13px"
                           :z-index "100" ;; avoid covered by page contents
                           }
-                  :on-click #(rf/dispatch [:common/set-navbar true])}
+                  :on-click #(rf/dispatch [:common/set-navbar-visible? true])}
         [:> FullscreenExit]]])))
 
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
     [:div {:style {:display "flex"}}
      [navbar]
-     [:main (if (or (nil? @(rf/subscribe [:common/navbar]))
-                    @(rf/subscribe [:common/navbar]))
+     [:main (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
+                    @(rf/subscribe [:common/navbar-visible?]))
               {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
               {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
       [page]]]))
