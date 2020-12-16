@@ -1,6 +1,6 @@
 (ns vorstellung.material
   (:require
-   [vorstellung.charts.core :as core]))
+   [vorstellung.material.core :as core]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))

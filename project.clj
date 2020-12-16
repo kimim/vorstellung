@@ -76,7 +76,7 @@
   :clean-targets ^{:protect false} [:target-path "target/cljsbuild"]
   :profiles
   {:uberjar {:omit-source true
-             :prep-tasks ["compile" ["shadow" "release" "app" "login"]]
+             :prep-tasks ["compile" ["shadow" "release" "app" "login" "icons" "charts" "material"]]
              :aot :all
              :uberjar-name "vorstellung.jar"
              :source-paths ["env/prod/clj"  "env/prod/cljs" ]
