@@ -6,7 +6,6 @@
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
    ["@material-ui/icons/ExitToApp" :default ExitToApp]
-
    ["@material-ui/icons/ContactSupportOutlined" :default ContactSupportOutlined]
    ["@material-ui/icons/Menu" :default Menu]
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
@@ -38,10 +37,10 @@
       [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Material UI"]
       (if @open? [:> ExpandLess] [:> ExpandMore])]
      [:> m/Collapse {:in @open?}
-      [menu-item "/material/#/grid" ViewComfy "Grid Layout"]
-      [menu-item "/material/#/data-grid" GridOn "Data Grid"]
-      [menu-item "/material/#/upload" BackupOutlined "File Uploader"]
-      [menu-item "/material/#/picker" Today "Date Picker"]]]))
+      [menu-item "/#/grid" ViewComfy "Grid Layout"]
+      [menu-item "/#/data-grid" GridOn "Data Grid"]
+      [menu-item "/#/upload" BackupOutlined "File Uploader"]
+      [menu-item "/#/picker" Today "Date Picker"]]]))
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
@@ -79,7 +78,6 @@
         [:> m/List {:style {:width (if @open "240px" "55px")}}
          [menu-item "/icons" ToysOutlined "Icons"]
          [menu-material-ui]
-         [menu-item "/charts" InsertChartOutlined "BizCharts"]
          [menu-item "/#/about" ContactSupportOutlined "About"]]]]
       [:div
        [:> m/Fab {:size "small"
