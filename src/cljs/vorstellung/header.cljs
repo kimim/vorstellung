@@ -41,7 +41,7 @@
       [menu-item "/material/#/grid" ViewComfy "Grid Layout"]
       [menu-item "/material/#/data-grid" GridOn "Data Grid"]
       [menu-item "/material/#/upload" BackupOutlined "File Uploader"]
-      [menu-item "/material/#/picker" Today "Data Picker"]]]))
+      [menu-item "/material/#/picker" Today "Date Picker"]]]))
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
