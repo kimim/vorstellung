@@ -1,5 +1,4 @@
-{:nrepl {:port 7002}
- :source-paths ["src/cljs" "env/dev/cljs"]
+{:source-paths ["src/cljs" "env/dev/cljs" "env/dev/resources"]
  :dependencies [[cljs-ajax "0.8.0"]
                 [re-frame "1.1.2"]
                 [reagent "1.0.0-rc1"]
@@ -17,6 +16,8 @@
                 [ring/ring-devel "1.8.1"]
                 [ring/ring-mock "0.4.0"]
                 [cider/cider-nrepl "0.25.4"]]
+
+ :nrepl {:port 7002}
  :builds
  {:app {:target :browser
         :output-dir "target/cljsbuild/public/js"

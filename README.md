@@ -95,7 +95,7 @@ To drop tables:
 
 To watch ClojureScript changes, run:
 
-    shadow-cljs npm-deps
+    npm install
     shadow-cljs watch app login icons charts material
 
 To watch Clojure changes, run:
