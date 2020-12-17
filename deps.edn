@@ -42,20 +42,18 @@
 
  :aliases {:run {:jvm-opts ["-Dconf=dev-config.edn"]
                  :extra-paths ["env/dev/clj"]
-                 :resource-paths ["env/dev/resources"]
+                 :resource-paths ["resources" "target/cljsbuild" "env/dev/resources"]
                  :main-opts ["-m" "vorstellung.core"]}
            :test {:jvm-opts ["-Dconf=test-config.edn"]
                   :extra-paths ["test/clj"]
                   :resource-paths ["env/test/resources"]
-                  :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-266"}}}
-           :outdated {:extra-deps {olical/depot {:mvn/version "1.4.0"}}
-                      :main-opts ["-m" "depot.outdated.main"]}}}
+                  :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}}}
 
 ;; :npm-dev-deps [[xmlhttprequest "1.8.0"]]
 ;; :java-source-paths ["java"]
 ;; :target-path "target/%s/"
 ;; :main ^:skip-aot vorstellung.core
-;;  :clean-targets ^{:protect false}} [:target-path "target/cljsbuild"]
+;; :clean-targets ^{:protect false}} [:target-path "target/cljsbuild"]
 ;; :profiles
 ;; {:uberjar {:omit-source true
 ;;            :prep-tasks ["compile" ["shadow" "release" "app" "login" "icons" "charts" "material"]]
