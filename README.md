@@ -17,7 +17,7 @@ export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/down
 wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_NAME.tar.gz
 tar -xvzf $GRAALVM_NAME.tar.gz
 sudo mv $GRAALVM_LIB /usr/local/lib
-echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:$PATH" >> ~/.bashrc
+echo "export PATH=/usr/local/lib/$GRAALVM_LIB/bin:/usr/local/lib/$GRAALVM_LIB/languages/js/bin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -33,7 +33,7 @@ curl -L $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_PACKAGE.tar.gz \
      -o $GRAALVM_PACKAGE.tar.gz
 tar -xvzf $GRAALVM_PACKAGE.tar.gz
 sudo mv $GRAALVM_LIB /Library/Java/JavaVirtualMachines/
-echo "export PATH=/Library/Java/JavaVirtualMachines/$GRAALVM_LIB/Contents/Home/bin:$PATH" \
+echo "export PATH=/Library/Java/JavaVirtualMachines/$GRAALVM_LIB/Contents/Home/bin:/usr/local/lib/$GRAALVM_LIB/languages/js/bin:$PATH" \
      >> ~/.bash_profile
 echo "export JAVA_HOME=/Library/Java/JavaVirtualMachines/$GRAALVM_LIB/Contents/Home" \
      >> ~/.bash_profile
@@ -57,23 +57,26 @@ export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/down
 wget $GRAALVM_GITHUB/vm-$GRAALVM_VERSION/$GRAALVM_PACKAGE.zip
 "/cygdrive/C/Program Files/7-Zip/7z.exe" x $GRAALVM_PACKAGE.zip
 mv $GRAALVM_LIB /usr/local/lib
-echo "export PATH=\"/usr/local/lib/$GRAALVM_LIB/bin:$PATH\"" >> ~/.bash_profile
+echo "export PATH=\"/usr/local/lib/$GRAALVM_LIB/bin:/usr/local/lib/$GRAALVM_LIB/languages/js/bin:$PATH\"" >> ~/.bash_profile
 source ~/.bash_profile
-
 ```
 
-### Leiningen
+### clj and shadow-cljs
 
-You will need [Leiningen][1] 2.0 or above installed.
+You will need [clj][1] and [shadow-clj][2] installed.
 
 ```shell
-wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
-chmod +x lein
-sudo mv lein /usr/local/bin
-lein
+# clj
+curl -O https://download.clojure.org/install/linux-install-1.10.1.754.sh
+chmod +x linux-install-1.10.1.754.sh
+sudo ./linux-install-1.10.1.754.sh
+
+# shadow-cljs
+npm install -g shadow-cljs
 ```
 
-[1]: https://github.com/technomancy/leiningen
+[1]: https://clojure.org/guides/getting_started
+[2]: https://shadow-cljs.github.io/docs/UsersGuide.html
 
 ## Running
 
@@ -83,27 +86,27 @@ Prepare development config:
 
 To create migration:
 
-    lein run create-migrate "users-table"
-    lein run migrate
+    clj -M:run create-migrate "users-table"
+    clj -M:run migrate
 
 To drop tables:
 
-    lein run rollback
+    clj -M:run rollback
 
 To watch ClojureScript changes, run:
 
-    lein shadow npm-deps
-    lein shadow watch app login icons charts material
+    shadow-cljs npm-deps
+    shadow-cljs watch app login icons charts material
 
 To watch Clojure changes, run:
 
-    lein run
+    clj -M:run
 
 And then visit: http://localhost:3030
 
 ## Create New APP
 
-1. Add new shadow-cljs build under `project.clj - :shadow-cljs - :builds`
+1. Add new shadow-cljs build under `shadow-cljs.edn - :builds`
 2. Add init entry point under `env/dev/cljs/vorstellung` and `env/prod/cljs/vorstellung`
 3. Add entry in `home-routes` at `src/clj/vorstellung/home.clj`
 
