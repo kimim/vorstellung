@@ -1,62 +1,60 @@
-{:deps {buddy/buddy-auth {:mvn/version "2.2.0"}
-        buddy/buddy-core {:mvn/version "1.6.0"}
-        buddy/buddy-hashers {:mvn/version "1.4.0"}
-        buddy/buddy-sign {:mvn/version "3.1.0"}
-        ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
-        cheshire/cheshire {:mvn/version "5.10.0"}
-        clojure.java-time/clojure.java-time {:mvn/version "0.3.2"}
-        com.cognitect/transit-clj {:mvn/version "1.0.324"}
-        com.fasterxml.jackson.core/jackson-core {:mvn/version "2.11.2"}
+{:deps {buddy/buddy-auth                            {:mvn/version "2.2.0"}
+        buddy/buddy-core                            {:mvn/version "1.6.0"}
+        buddy/buddy-hashers                         {:mvn/version "1.4.0"}
+        buddy/buddy-sign                            {:mvn/version "3.1.0"}
+        ch.qos.logback/logback-classic              {:mvn/version "1.2.3"}
+        cheshire/cheshire                           {:mvn/version "5.10.0"}
+        clojure.java-time/clojure.java-time         {:mvn/version "0.3.2"}
+        com.cognitect/transit-clj                   {:mvn/version "1.0.324"}
+        com.fasterxml.jackson.core/jackson-core     {:mvn/version "2.11.2"}
         com.fasterxml.jackson.core/jackson-databind {:mvn/version "2.11.2"}
-        conman/conman {:mvn/version "0.9.0"}
-        cprop/cprop {:mvn/version "0.1.17"}
-        expound/expound {:mvn/version "0.8.5"}
-        funcool/struct {:mvn/version "1.4.0"}
-        luminus-migrations/luminus-migrations {:mvn/version "0.6.7"}
-        luminus-http-kit/luminus-http-kit {:mvn/version "0.1.8"}
-        luminus-transit/luminus-transit {:mvn/version "0.1.2"}
-        luminus/ring-ttl-session {:mvn/version "0.3.3"}
-        markdown-clj/markdown-clj {:mvn/version "1.10.5"}
-        metosin/jsonista {:mvn/version "0.2.6"}
-        metosin/muuntaja {:mvn/version "0.6.7"}
-        metosin/reitit {:mvn/version "0.5.5"}
-        metosin/ring-http-response {:mvn/version "0.9.1"}
-        mount/mount {:mvn/version "0.1.16"}
-        nrepl/nrepl {:mvn/version "0.8.0"}
-        org.clojure/clojure {:mvn/version "1.10.1"}
-        org.clojure/core.async {:mvn/version "1.2.603"}
-        org.clojure/tools.cli {:mvn/version "1.0.194"}
-        org.clojure/tools.logging {:mvn/version "1.1.0"}
-        org.webjars.npm/bulma {:mvn/version "0.9.0"}
-        org.webjars.npm/material-icons {:mvn/version "0.3.1"}
-        org.webjars/webjars-locator {:mvn/version "0.40"}
-        ring-webjars/ring-webjars {:mvn/version "0.2.0"}
-        org.xerial/sqlite-jdbc {:mvn/version "3.32.3"}
-        ring/ring-core {:mvn/version "1.8.1"}
-        ring/ring-defaults {:mvn/version "0.3.2"}
-        selmer/selmer {:mvn/version "1.12.28"}
-        ring/ring-devel {:mvn/version "1.8.1"}
-        prone/prone {:mvn/version "2020-01-17"}}
- :paths ["src/clj" "src/cljc" "env/dev/clj"
-         "resources" "env/prod/resources" "target/cljsbuild"]
+        conman/conman                               {:mvn/version "0.9.0"}
+        cprop/cprop                                 {:mvn/version "0.1.17"}
+        expound/expound                             {:mvn/version "0.8.5"}
+        funcool/struct                              {:mvn/version "1.4.0"}
+        luminus-migrations/luminus-migrations       {:mvn/version "0.6.7"}
+        luminus-http-kit/luminus-http-kit           {:mvn/version "0.1.8"}
+        luminus-transit/luminus-transit             {:mvn/version "0.1.2"}
+        luminus/ring-ttl-session                    {:mvn/version "0.3.3"}
+        markdown-clj/markdown-clj                   {:mvn/version "1.10.5"}
+        metosin/jsonista                            {:mvn/version "0.2.6"}
+        metosin/muuntaja                            {:mvn/version "0.6.7"}
+        metosin/reitit                              {:mvn/version "0.5.5"}
+        metosin/ring-http-response                  {:mvn/version "0.9.1"}
+        mount/mount                                 {:mvn/version "0.1.16"}
+        nrepl/nrepl                                 {:mvn/version "0.8.0"}
+        org.clojure/clojure                         {:mvn/version "1.10.1"}
+        org.clojure/core.async                      {:mvn/version "1.2.603"}
+        org.clojure/tools.cli                       {:mvn/version "1.0.194"}
+        org.clojure/tools.logging                   {:mvn/version "1.1.0"}
+        org.webjars.npm/bulma                       {:mvn/version "0.9.0"}
+        org.webjars.npm/material-icons              {:mvn/version "0.3.1"}
+        org.webjars/webjars-locator                 {:mvn/version "0.40"}
+        ring-webjars/ring-webjars                   {:mvn/version "0.2.0"}
+        org.xerial/sqlite-jdbc                      {:mvn/version "3.32.3"}
+        ring/ring-core                              {:mvn/version "1.8.1"}
+        ring/ring-defaults                          {:mvn/version "0.3.2"}
+        selmer/selmer                               {:mvn/version "1.12.28"}
+        ring/ring-devel                             {:mvn/version "1.8.1"}
+        prone/prone                                 {:mvn/version "2020-01-17"}}
+
+ :paths ["src/clj" "src/cljc" "resources" "target/cljsbuild"]
+
  :aliases {:run {:jvm-opts ["-Dconf=dev-config.edn"]
+                 :extra-paths ["env/dev/clj"]
+                 :resource-paths ["env/dev/resources"]
                  :main-opts ["-m" "vorstellung.core"]}
-           :test {:extra-paths ["test/clj"]
+           :test {:jvm-opts ["-Dconf=test-config.edn"]
+                  :extra-paths ["test/clj"]
+                  :resource-paths ["env/test/resources"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-266"}}}
            :outdated {:extra-deps {olical/depot {:mvn/version "1.4.0"}}
                       :main-opts ["-m" "depot.outdated.main"]}}}
 
 ;; :npm-dev-deps [[xmlhttprequest "1.8.0"]]
-;; :min-lein-version "2.0.0"
-;; :source-paths ["src/clj" "src/cljs" "src/cljc"]
 ;; :java-source-paths ["java"]
-;; :test-paths ["test/clj"]
-;; :resource-paths ["resources" "target/cljsbuild"]
 ;; :target-path "target/%s/"
 ;; :main ^:skip-aot vorstellung.core
-
-;;  :plugins [[lein-shadow "0.2.0"]
-;;            [cider/cider-nrepl "0.25.4"]]
 ;;  :clean-targets ^{:protect false}} [:target-path "target/cljsbuild"]
 ;; :profiles
 ;; {:uberjar {:omit-source true
