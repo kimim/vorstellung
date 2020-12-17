@@ -1,4 +1,16 @@
-{:deps {buddy/buddy-auth                            {:mvn/version "2.2.0"}
+{:paths ["src/clj" "src/cljc" "resources" "target/cljsbuild"]
+ :aliases {:run
+           {:jvm-opts ["-Dconf=dev-config.edn"]
+                 :extra-paths ["env/dev/clj"]
+                 :resource-paths ["resources" "target/cljsbuild" "env/dev/resources"]
+                 :main-opts ["-m" "vorstellung.core"]}
+           :test
+           {:jvm-opts ["-Dconf=test-config.edn"]
+            :extra-paths ["test/clj"]
+            :resource-paths ["env/test/resources"]
+            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}}
+
+ :deps {buddy/buddy-auth                            {:mvn/version "2.2.0"}
         buddy/buddy-core                            {:mvn/version "1.6.0"}
         buddy/buddy-hashers                         {:mvn/version "1.4.0"}
         buddy/buddy-sign                            {:mvn/version "3.1.0"}
@@ -36,20 +48,4 @@
         ring/ring-defaults                          {:mvn/version "0.3.2"}
         selmer/selmer                               {:mvn/version "1.12.28"}
         ring/ring-devel                             {:mvn/version "1.8.1"}
-        prone/prone                                 {:mvn/version "2020-01-17"}}
-
- :paths ["src/clj" "src/cljc" "resources" "target/cljsbuild"]
-
- :aliases {:run
-           {:jvm-opts ["-Dconf=dev-config.edn"]
-            :extra-paths ["env/dev/clj"]
-            :resource-paths ["resources" "target/cljsbuild" "env/dev/resources"]
-            :main-opts ["-m" "vorstellung.core"]}
-           :test
-           {:jvm-opts ["-Dconf=test-config.edn"]
-            :extra-paths ["test/clj"]
-            :resource-paths ["env/test/resources"]
-            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}
-           {:eastwood
-            {:main-opts ["-m" "eastwood.lint" {:source-paths ["src"]}]
-	         :extra-deps {jonase/eastwood {:mvn/version "0.3.6"}}}}}}
+        prone/prone                                 {:mvn/version "2020-01-17"}}}

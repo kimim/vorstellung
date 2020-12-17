@@ -34,13 +34,13 @@
     [:<>
      [:> m/ListItem {:button true :selected (if @open? true false) :on-click #(swap! open? not)}
       [:> m/ListItemIcon [:> Build]]
-      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Material UI"]
+      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Menu"]
       (if @open? [:> ExpandLess] [:> ExpandMore])]
      [:> m/Collapse {:in @open?}
-      [menu-item "/#/grid" ViewComfy "Grid Layout"]
-      [menu-item "/#/data-grid" GridOn "Data Grid"]
-      [menu-item "/#/upload" BackupOutlined "File Uploader"]
-      [menu-item "/#/picker" Today "Date Picker"]]]))
+      [menu-item "/#/about" ViewComfy       "Menu Item 0"]
+      [menu-item "/#/about" GridOn          "Menu Item 1"]
+      [menu-item "/#/about" BackupOutlined  "Menu Item 2"]
+      [menu-item "/#/about" Today           "Menu Item 3"]]]))
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
@@ -76,7 +76,6 @@
               [:> ChevronRight])]]
         [:> m/Divider]
         [:> m/List {:style {:width (if @open "240px" "55px")}}
-         [menu-item "/icons" ToysOutlined "Icons"]
          [menu-material-ui]
          [menu-item "/#/about" ContactSupportOutlined "About"]]]]
       [:div
