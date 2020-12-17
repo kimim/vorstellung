@@ -55,7 +55,7 @@
              [bizcharts "4.0.16"]
              [process "0.11.10"]
              ["@material-ui/data-grid" "4.0.0-alpha.11"]
-             [react-dropzone-uploader]
+             [react-dropzone-uploader "2.11.0"]
              ["@material-ui/pickers" "3.2.10"]
              ["@date-io/date-fns" "1.3.13"]
              ["date-fns" "2.16.1"]]
