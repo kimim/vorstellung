@@ -1,4 +1,4 @@
-(ns vorstellung.home.core
+(ns vorstellung.auth.core
   (:require
    [day8.re-frame.http-fx]
    [reagent.dom :as rdom]
@@ -14,31 +14,21 @@
    [vorstellung.events]
    [vorstellung.common.ajax :as ajax]
    [vorstellung.header :as header]
-   [vorstellung.home.page :as page])
+   [vorstellung.auth.page :as page])
   (:import goog.History))
-
-(defn home-page []
-  [:section.section>div.container>div.content
-   (when-let [docs @(rf/subscribe [:docs])]
-     [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
-
-(defn about-page []
-  [:div
-   [:img {:src "/img/warning_clojure.png"}]])
 
 (def router
   (reitit/router
-   [["/"        {:name        :home
-                 :view        home-page
-                 :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
-    ["/about"   {:name        :about
-                 :view        #'about-page}]]))
+   [["/"        {:name      :signin
+                 :view      page/signin}]
+     ["/signup" {:name      :signup
+                 :view      page/signup}]]))
 
 ;; -------------------------
 ;; Initialize app
 (defn ^:dev/after-load mount-components []
   (rf/clear-subscription-cache!)
-  (rdom/render [#'header/page] (.getElementById js/document "app")))
+  (rdom/render [#'header/page-no-header] (.getElementById js/document "app")))
 
 (defn init! []
   (route/start-router! router route/navigate!)

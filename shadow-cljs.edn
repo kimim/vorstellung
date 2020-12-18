@@ -34,4 +34,10 @@
              :asset-path "/js"
              :modules {:app {:entries [vorstellung.app]}}
              :devtools {:watch-dir "resources/public" :preloads [re-frisk.preload]}
+             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+  :auth     {:target :browser
+             :output-dir "target/cljsbuild/public/js"
+             :asset-path "/js"
+             :modules {:auth {:entries [vorstellung.auth]}}
+             :devtools {:watch-dir "resources/public" :preloads [re-frisk.preload]}
              :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}}}

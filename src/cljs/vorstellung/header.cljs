@@ -78,3 +78,8 @@
               {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
               {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
       [page]]]))
+
+(defn page-no-header []
+  (if-let [page @(rf/subscribe [:common/page])]
+    [:div {:style {:display "flex"}}
+     [page]]))

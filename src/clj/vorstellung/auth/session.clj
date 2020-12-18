@@ -9,7 +9,7 @@
   {:user "pass"})
 
 (defn login [request]
-  (layout/render request "home.html" {:script "/js/login.js"}))
+  (layout/render request "home.html" {:script "/js/auth.js"}))
 
 (defn logout [request]
   (let [next-url (get-in request [:query-params :next] "/")]

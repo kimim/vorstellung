@@ -17,3 +17,5 @@ dev-config.edn
 test-config.edn
 *.db
 .cpcache
+yarn-error.log
+yarn.lock
