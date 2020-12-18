@@ -27,11 +27,11 @@
 
 (def router
   (reitit/router
-    [["/" {:name        :home
-           :view        home-page
-           :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
-     ["/about" {:name :about
-                :view #'about-page}]]))
+    [["/"       {:name          ::home
+                 :view          home-page
+                 :controllers   [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
+     ["/about"  {:name          ::about
+                 :view          #'about-page}]]))
 
 ;; -------------------------
 ;; Initialize app

@@ -16,14 +16,18 @@
    [vorstellung.common.menu :as menu]))
 
 (defn menu []
-  (r/with-let [open? (r/atom false)]
-    [:<>
-     [:> m/ListItem {:button true :selected (if @open? true false) :on-click #(swap! open? not)}
-      [:> m/ListItemIcon [:> Build]]
-      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Menu"]
-      (if @open? [:> ExpandLess] [:> ExpandMore])]
-     [:> m/Collapse {:in @open?}
-      [menu/item "/app/#/about" ViewComfy       "Menu Item 0"]
-      [menu/item "/app/#/about" GridOn          "Menu Item 1"]
-      [menu/item "/app/#/about" BackupOutlined  "Menu Item 2"]
-      [menu/item "/app/#/about" Today           "Menu Item 3"]]]))
+  (r/with-let [collapse? (r/atom false)]
+    (let [view-name (rf/subscribe [:common/page-id])
+          open? (or @collapse?
+                     (= "vorstellung.app.core" (namespace @view-name)))]
+      [:<>
+       [:> m/ListItem {:button true :selected (if open? true false)
+                       :on-click #(swap! collapse? not)}
+        [:> m/ListItemIcon [:> Build]]
+        [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Menu"]
+        (if open? [:> ExpandLess] [:> ExpandMore])]
+       [:> m/Collapse {:in open?}
+        [menu/item "/app/#/about" ViewComfy       "Menu Item 0"]
+        [menu/item "/app/#/about" GridOn          "Menu Item 1"]
+        [menu/item "/app/#/about" BackupOutlined  "Menu Item 2"]
+        [menu/item "/app/#/about" Today           "Menu Item 3"]]])))
