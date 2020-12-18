@@ -29,7 +29,8 @@
    {:middleware [#_middleware/wrap-csrf
                  auth/wrap-auth
                  middleware/wrap-formats]}
-   ["/"         {:get #(home-page % "/js/app.js")}]
+   ["/"         {:get #(home-page % "/js/home.js")}]
+   ["/app/"     {:get #(home-page % "/js/app.js")}]
    ["/login" {:get auth/login
               :post auth/signin}]
    ["/logout" {:get auth/logout}]

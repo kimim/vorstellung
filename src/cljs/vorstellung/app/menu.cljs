@@ -1,0 +1,29 @@
+(ns vorstellung.app.menu
+  (:require
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   ["@material-ui/core" :as m]
+   ;; require only submodules, reduce 7M in dev, 4M in prod
+   ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
+   ["@material-ui/icons/Build" :default Build]
+   ["@material-ui/icons/ExpandLess" :default ExpandLess]
+   ["@material-ui/icons/ExpandMore" :default ExpandMore]
+   ["@material-ui/icons/ToysOutlined" :default ToysOutlined]
+   ["@material-ui/icons/ViewComfy" :default ViewComfy]
+   ["@material-ui/icons/GridOn" :default GridOn]
+   ["@material-ui/icons/BackupOutlined" :default BackupOutlined]
+   ["@material-ui/icons/Today" :default Today]
+   [vorstellung.common.menu :as menu]))
+
+(defn menu []
+  (r/with-let [open? (r/atom false)]
+    [:<>
+     [:> m/ListItem {:button true :selected (if @open? true false) :on-click #(swap! open? not)}
+      [:> m/ListItemIcon [:> Build]]
+      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Menu"]
+      (if @open? [:> ExpandLess] [:> ExpandMore])]
+     [:> m/Collapse {:in @open?}
+      [menu/item "/app/#/about" ViewComfy       "Menu Item 0"]
+      [menu/item "/app/#/about" GridOn          "Menu Item 1"]
+      [menu/item "/app/#/about" BackupOutlined  "Menu Item 2"]
+      [menu/item "/app/#/about" Today           "Menu Item 3"]]]))

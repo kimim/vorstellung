@@ -1,6 +1,6 @@
 (ns ^:dev/once vorstellung.app
   (:require
-   [vorstellung.core :as core]
+   [vorstellung.app.core :as core]
    [cljs.spec.alpha :as s]
    [expound.alpha :as expound]
    [devtools.core :as devtools]))

@@ -22,16 +22,16 @@
 
  :nrepl     {:port 7002}
  :builds
- {:app      {:target :browser
+ {:home     {:target :browser
              :output-dir "target/cljsbuild/public/js"
              :asset-path "/js"
-             :modules {:app {:entries [vorstellung.app]}}
+             :modules {:home {:entries [vorstellung.home]}}
              :devtools {:watch-dir "resources/public"
                         :preloads [re-frisk.preload]}
              :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
-  :login    {:target :browser
+  :app      {:target :browser
              :output-dir "target/cljsbuild/public/js"
              :asset-path "/js"
-             :modules {:login {:entries [vorstellung.login]}}
+             :modules {:app {:entries [vorstellung.app]}}
              :devtools {:watch-dir "resources/public" :preloads [re-frisk.preload]}
              :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}}}

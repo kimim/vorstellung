@@ -1,4 +1,4 @@
-(ns vorstellung.login.page
+(ns vorstellung.home.page
   (:require
    [reagent.core :as r]
    [re-frame.core :as rf]

@@ -21,26 +21,8 @@
    ["@material-ui/icons/ExpandLess" :default ExpandLess]
    ["@material-ui/icons/ExpandMore" :default ExpandMore]
    ["@material-ui/icons/Build" :default Build]
-   #_["@material-ui/icons"
-    :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
-
-(defn menu-item [link icon text]
-  [:> m/ListItem {:button true :component "a" :href link}
-   [:> m/ListItemIcon [:> icon]]
-   [:> m/Typography {:variant "inherit" :noWrap true} text]])
-
-(defn menu-material-ui []
-  (r/with-let [open? (r/atom false)]
-    [:<>
-     [:> m/ListItem {:button true :selected (if @open? true false) :on-click #(swap! open? not)}
-      [:> m/ListItemIcon [:> Build]]
-      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Menu"]
-      (if @open? [:> ExpandLess] [:> ExpandMore])]
-     [:> m/Collapse {:in @open?}
-      [menu-item "/#/about" ViewComfy       "Menu Item 0"]
-      [menu-item "/#/about" GridOn          "Menu Item 1"]
-      [menu-item "/#/about" BackupOutlined  "Menu Item 2"]
-      [menu-item "/#/about" Today           "Menu Item 3"]]]))
+   [vorstellung.common.menu :as menu]
+   [vorstellung.app.menu :as menu-app]))
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
@@ -76,8 +58,8 @@
               [:> ChevronRight])]]
         [:> m/Divider]
         [:> m/List {:style {:width (if @open "240px" "55px")}}
-         [menu-material-ui]
-         [menu-item "/#/about" ContactSupportOutlined "About"]]]]
+         [menu-app/menu]
+         [menu/item "/#/about" ContactSupportOutlined "About"]]]]
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button

@@ -1,6 +1,6 @@
-(ns ^:dev/once vorstellung.login
+(ns ^:dev/once vorstellung.home
   (:require
-   [vorstellung.login.core :as core]
+   [vorstellung.home.core :as core]
    [cljs.spec.alpha :as s]
    [expound.alpha :as expound]
    [devtools.core :as devtools]))

@@ -1,4 +1,4 @@
-(ns vorstellung.core
+(ns vorstellung.app.core
   (:require
    [day8.re-frame.http-fx]
    [reagent.dom :as rdom]
@@ -10,8 +10,9 @@
    [reitit.core :as reitit]
    [reitit.frontend.easy :as rfe]
    [clojure.string :as string]
+   [vorstellung.common.route :as route]
+   [vorstellung.common.ajax :as ajax]
    [vorstellung.events]
-   [vorstellung.ajax :as ajax]
    [vorstellung.header :as header])
   (:import goog.History))
 
@@ -24,9 +25,6 @@
    (when-let [docs @(rf/subscribe [:docs])]
      [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
 
-(defn navigate! [match _]
-  (rf/dispatch [:common/navigate match]))
-
 (def router
   (reitit/router
     [["/" {:name        :home
@@ -35,12 +33,6 @@
      ["/about" {:name :about
                 :view #'about-page}]]))
 
-(defn start-router! []
-  (rfe/start!
-    router
-    navigate!
-    {}))
-
 ;; -------------------------
 ;; Initialize app
 (defn ^:dev/after-load mount-components []
@@ -48,6 +40,6 @@
   (rdom/render [#'header/page] (.getElementById js/document "app")))
 
 (defn init! []
-  (start-router!)
+  (route/start-router! router route/navigate!)
   (ajax/load-interceptors!)
   (mount-components))
