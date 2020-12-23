@@ -106,7 +106,7 @@ And then visit: [http://localhost:3030](http://localhost:3030)
 
 ## Deploy to docker
 
-    shadow-cljs compile home auth app
+    shadow-cljs release home auth app
     clj -X:uberjar
     ./dockerize.sh
 
