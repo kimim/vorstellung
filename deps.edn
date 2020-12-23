@@ -39,10 +39,10 @@
         org.clojure/core.async                      {:mvn/version "1.2.603"}
         org.clojure/tools.cli                       {:mvn/version "1.0.194"}
         org.clojure/tools.logging                   {:mvn/version "1.1.0"}
-        org.webjars.npm/bulma                       {:mvn/version "0.9.0"}
-        org.webjars.npm/material-icons              {:mvn/version "0.3.1"}
-        org.webjars/webjars-locator                 {:mvn/version "0.40"}
-        ring-webjars/ring-webjars                   {:mvn/version "0.2.0"}
+        ;; org.webjars.npm/bulma                       {:mvn/version "0.9.0"}
+        ;; org.webjars.npm/material-icons              {:mvn/version "0.3.1"}
+        ;; org.webjars/webjars-locator                 {:mvn/version "0.40"}
+        ;; ring-webjars/ring-webjars                   {:mvn/version "0.2.0"}
         org.xerial/sqlite-jdbc                      {:mvn/version "3.32.3"}
         ring/ring-core                              {:mvn/version "1.8.1"}
         ring/ring-defaults                          {:mvn/version "0.3.2"}
