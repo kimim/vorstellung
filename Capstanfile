@@ -24,5 +24,4 @@ cmdline: /java.so -jar /vorstellung/app.jar
 # List of files that are included in the generated image.
 #
 files:
-  /vorstellung/app.jar: ./target/uberjar/vorstellung.jar
-
+  /vorstellung/app.jar: ./target/vorstellung.jar

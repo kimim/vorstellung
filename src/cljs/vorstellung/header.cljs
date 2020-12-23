@@ -24,9 +24,8 @@
    [vorstellung.common.menu :as menu]
    [vorstellung.app.menu :as menu-app]))
 
-;; add app menu items in menu-list
 (defn menu-list []
-  [:> m/List {:style {:width (if @open "240px" "55px")}}
+  [:<>
    [menu-app/menu]
    [menu/item "/#/about" ContactSupportOutlined "About"]])
 
@@ -63,7 +62,8 @@
           (if @open [:> ChevronLeft]
               [:> ChevronRight])]]
         [:> m/Divider]
-        [menu-list]]]
+        [:> m/List {:style {:width (if @open "240px" "55px")}}
+         [menu-list]]]]
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button

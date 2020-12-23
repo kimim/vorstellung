@@ -102,7 +102,15 @@ To watch Clojure changes, run:
 
     clj -M:run
 
-And then visit: http://localhost:3030
+And then visit: [http://localhost:3030](http://localhost:3030)
+
+## Deploy to docker
+
+    shadow-cljs compile home auth app
+    clj -X:uberjar
+    ./dockerize.sh
+
+And then visit: [http://localhost:3000](http://localhost:3000)
 
 ## Create New APP
 
