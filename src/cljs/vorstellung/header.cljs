@@ -24,6 +24,12 @@
    [vorstellung.common.menu :as menu]
    [vorstellung.app.menu :as menu-app]))
 
+;; add app menu items in menu-list
+(defn menu-list []
+  [:> m/List {:style {:width (if @open "240px" "55px")}}
+   [menu-app/menu]
+   [menu/item "/#/about" ContactSupportOutlined "About"]])
+
 (defn navbar []
   (r/with-let [open (r/atom false)]
     (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
@@ -57,9 +63,7 @@
           (if @open [:> ChevronLeft]
               [:> ChevronRight])]]
         [:> m/Divider]
-        [:> m/List {:style {:width (if @open "240px" "55px")}}
-         [menu-app/menu]
-         [menu/item "/#/about" ContactSupportOutlined "About"]]]]
+        [menu-list]]]
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button
