@@ -1,4 +1,4 @@
-{:source-paths ["src/cljs" "env/prod/cljs"]
+{:source-paths ["src/cljs"]
  :dependencies [[cljs-ajax "0.8.0"]
                 [re-frame "1.1.2"]
                 [reagent "1.0.0-rc1"]
@@ -22,22 +22,26 @@
 
  :nrepl     {:port 7002}
  :builds
- {:home     {:target :browser
-             :output-dir "target/cljsbuild/public/js"
-             :asset-path "/js"
-             :modules {:home {:entries [vorstellung.home]}}
-             :devtools {:watch-dir "resources/public"
-                        :preloads [re-frisk.preload]}
-             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
-  :auth     {:target :browser
-             :output-dir "target/cljsbuild/public/js"
-             :asset-path "/js"
-             :modules {:auth {:entries [vorstellung.auth]}}
-             :devtools {:watch-dir "resources/public" :preloads [re-frisk.preload]}
-             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
-  :app      {:target :browser
-             :output-dir "target/cljsbuild/public/js"
-             :asset-path "/js"
-             :modules {:app {:entries [vorstellung.app]}}
-             :devtools {:watch-dir "resources/public" :preloads [re-frisk.preload]}
-             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}}}
+ {:dev     {:target :browser
+            :output-dir "target/cljsbuild/public/js"
+            :asset-path "/js"
+            :modules {:shared {:entries []}
+                      :home {:entries [vorstellung.home.dev]
+                             :depends-on #{:shared}}
+                      :auth {:entries [vorstellung.auth.dev]
+                             :depends-on #{:shared}}
+                      :app  {:entries [vorstellung.app.dev]
+                             :depends-on #{:shared}}}
+            :devtools {:watch-dir "resources/public"
+                             :preloads [re-frisk.preload]}
+            :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+  :prod    {:target :browser
+            :output-dir "target/cljsbuild/public/js"
+            :asset-path "/js"
+            :modules {:shared {:entries []}
+                      :home {:entries [vorstellung.home.prod]
+                             :depends-on #{:shared}}
+                      :auth {:entries [vorstellung.auth.prod]
+                             :depends-on #{:shared}}
+                      :app  {:entries [vorstellung.app.prod]
+                             :depends-on #{:shared}}}}}}
