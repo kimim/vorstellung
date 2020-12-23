@@ -1,7 +1,7 @@
 {:source-paths ["src/cljs"]
  :dependencies [[cljs-ajax "0.8.0"]
                 [re-frame "1.1.2"]
-                [reagent "1.0.0-rc1"]
+                [reagent "1.0.0"]
                 [metosin/reitit "0.5.5"]
                 [day8.re-frame/http-fx "0.1.6"]
                 [markdown-clj "1.10.5"]
@@ -25,6 +25,7 @@
  {:dev     {:target :browser
             :output-dir "target/cljsbuild/public/js"
             :asset-path "/js"
+            :js-options {:entry-keys ["browser" "main"]}
             :modules {:shared {:entries []}
                       :home {:entries [vorstellung.home.dev]
                              :depends-on #{:shared}}
@@ -38,6 +39,7 @@
   :prod    {:target :browser
             :output-dir "target/cljsbuild/public/js"
             :asset-path "/js"
+            :js-options {:entry-keys ["browser" "main"]}
             :modules {:shared {:entries []}
                       :home {:entries [vorstellung.home.prod]
                              :depends-on #{:shared}}
