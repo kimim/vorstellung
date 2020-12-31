@@ -96,13 +96,21 @@ To drop tables:
 To watch ClojureScript changes, run:
 
     npm install
-    shadow-cljs watch home app
+    shadow-cljs watch home auth app
 
 To watch Clojure changes, run:
 
     clj -M:run
 
-And then visit: http://localhost:3030
+And then visit: [http://localhost:3030](http://localhost:3030)
+
+## Deploy to docker
+
+    shadow-cljs release home auth app
+    clj -X:uberjar
+    ./dockerize.sh
+
+And then visit: [http://localhost:3000](http://localhost:3000)
 
 ## Create New APP
 

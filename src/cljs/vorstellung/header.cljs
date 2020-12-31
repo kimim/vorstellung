@@ -24,6 +24,11 @@
    [vorstellung.common.menu :as menu]
    [vorstellung.app.menu :as menu-app]))
 
+(defn menu-list []
+  [:<>
+   [menu-app/menu]
+   [menu/item "/#/about" ContactSupportOutlined "About"]])
+
 (defn navbar []
   (r/with-let [open (r/atom false)]
     (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
@@ -58,8 +63,7 @@
               [:> ChevronRight])]]
         [:> m/Divider]
         [:> m/List {:style {:width (if @open "240px" "55px")}}
-         [menu-app/menu]
-         [menu/item "/#/about" ContactSupportOutlined "About"]]]]
+         [menu-list]]]]
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button

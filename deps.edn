@@ -1,14 +1,25 @@
 {:paths ["src/clj" "src/cljc" "resources" "target/cljsbuild"]
  :aliases {:run
            {:jvm-opts ["-Dconf=dev-config.edn"]
-                 :extra-paths ["env/dev/clj"]
-                 :resource-paths ["resources" "target/cljsbuild" "env/dev/resources"]
-                 :main-opts ["-m" "vorstellung.core"]}
+            :extra-paths ["env/dev/clj" "env/dev/resources"]
+            :main-opts ["-m" "vorstellung.core"]}
            :test
            {:jvm-opts ["-Dconf=test-config.edn"]
-            :extra-paths ["test/clj"]
-            :resource-paths ["env/test/resources"]
-            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}}
+            :extra-paths ["test/clj" "env/test/resources"]
+            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}
+           :uberjar
+           {:extra-deps  {seancorfield/depstar {:mvn/version "2.0.160"}}
+            :exec-fn       hf.depstar/uberjar
+            :exec-args     {:jar        "target/vorstellung.jar"
+                            :aot        true
+                            :aliases    [:prod]
+                            :main-class vorstellung.core}}
+           :prod
+           {:extra-paths ["env/prod/clj" "env/prod/resources"]}
+           :uberdeps
+           {:extra-paths ["env/prod/clj" "env/prod/resources"]
+            :extra-deps {uberdeps/uberdeps {:mvn/version "1.0.0"}}
+            :main-opts  ["-m" "uberdeps.uberjar" "--target" "target/vorstellung.jar"]}}
 
  :deps {buddy/buddy-auth                            {:mvn/version "2.2.0"}
         buddy/buddy-core                            {:mvn/version "1.6.0"}

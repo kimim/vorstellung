@@ -13,7 +13,8 @@
    [vorstellung.common.route :as route]
    [vorstellung.common.ajax :as ajax]
    [vorstellung.events]
-   [vorstellung.header :as header])
+   [vorstellung.header :as header]
+   [vorstellung.app.table :as table])
   (:import goog.History))
 
 (defn about-page []
@@ -30,6 +31,8 @@
     [["/"       {:name          ::home
                  :view          home-page
                  :controllers   [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
+     ["/table"  {:name          ::table
+                 :view          #'table/page}]
      ["/about"  {:name          ::about
                  :view          #'about-page}]]))
 
