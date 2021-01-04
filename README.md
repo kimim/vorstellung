@@ -106,7 +106,7 @@ And then visit: [http://localhost:3030](http://localhost:3030)
 
 ## Unit Testing
 
-    clj -M:test -m kaocha.runner
+    clj -M:test
 
 ## Deploy to docker
 
