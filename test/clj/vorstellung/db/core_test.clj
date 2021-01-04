@@ -21,18 +21,13 @@
   (jdbc/with-transaction [t-conn *db* {:rollback-only true}]
     (is (= 1 (db/create-user!
               t-conn
-              {:id         "1"
+              {:email      "sam.smith@example.com"
                :first_name "Sam"
                :last_name  "Smith"
-               :email      "sam.smith@example.com"
-               :pass       "pass"}
+               :password   "pass"}
               {})))
-    (is (= {:id         "1"
+    (is (= {:email      "sam.smith@example.com"
             :first_name "Sam"
             :last_name  "Smith"
-            :email      "sam.smith@example.com"
-            :pass       "pass"
-            :admin      nil
-            :last_login nil
-            :is_active  nil}
-           (db/get-user t-conn {:id "1"} {})))))
+            :password   "pass"}
+           (db/get-user t-conn {:email "sam.smith@example.com"} {})))))

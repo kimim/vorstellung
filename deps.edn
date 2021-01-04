@@ -5,8 +5,10 @@
             :main-opts ["-m" "vorstellung.core"]}
            :test
            {:jvm-opts ["-Dconf=test-config.edn"]
-            :extra-paths ["test/clj" "env/test/resources"]
-            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}}}
+            :extra-paths ["test/clj" "env/test/resources" "env/test/clj" "env/test/resources"]
+            :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}
+                         ring/ring-devel     {:mvn/version "1.8.1"}
+                         ring/ring-mock      {:mvn/version "0.4.0"}}}
            :uberjar
            {:extra-deps  {seancorfield/depstar {:mvn/version "2.0.160"}}
             :exec-fn       hf.depstar/uberjar

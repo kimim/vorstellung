@@ -96,7 +96,7 @@ To drop tables:
 To watch ClojureScript changes, run:
 
     npm install
-    shadow-cljs watch home auth app
+    shadow-cljs watch dev
 
 To watch Clojure changes, run:
 
@@ -104,19 +104,17 @@ To watch Clojure changes, run:
 
 And then visit: [http://localhost:3030](http://localhost:3030)
 
+## Unit Testing
+
+    clj -M:test -m kaocha.runner
+
 ## Deploy to docker
 
-    shadow-cljs release home auth app
+    shadow-cljs release prod
     clj -X:uberjar
     ./dockerize.sh
 
 And then visit: [http://localhost:3000](http://localhost:3000)
-
-## Create New APP
-
-1. Add new shadow-cljs build under `shadow-cljs.edn - :builds`
-2. Add init entry point under `env/dev/cljs/vorstellung` and `env/prod/cljs/vorstellung`
-3. Add entry in `home-routes` at `src/clj/vorstellung/home.clj`
 
 ## License
 
