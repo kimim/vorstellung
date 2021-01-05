@@ -3,7 +3,7 @@
            {:jvm-opts ["-Dconf=dev-config.edn"]
             :extra-paths ["env/dev/clj" "env/dev/resources"]
             :extra-deps {cider/cider-nrepl  {:mvn/version "0.25.6"}
-                         nrepl/nrepl        {:mvn/version "0.8.0"}}
+                         nrepl/nrepl        {:mvn/version "0.8.3"}}
             :main-opts ["-m" "vorstellung.core"]}
            :test
            {:jvm-opts ["-Dconf=test-config.edn"]
