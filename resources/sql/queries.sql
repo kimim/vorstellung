@@ -20,3 +20,29 @@ WHERE email = :email
 -- :doc deletes a user record given the id
 DELETE FROM users
 WHERE email = :email
+
+-- :name create-dog! :! :n
+-- :doc creates a new dog record
+INSERT INTO dogs
+(name, color)
+VALUES (:name, :color)
+
+-- :name update-dog! :! :n
+-- :doc updates an existing dog record
+UPDATE dogs
+SET name = :name, color = :color
+WHERE id = :id
+
+-- :name get-dog :? :1
+-- :doc retrieves a dog record given the id
+SELECT * FROM dogs
+WHERE id  = :id
+
+-- :name delete-dog! :! :n
+-- :doc deletes a dog record given the id
+DELETE FROM dogs
+WHERE id = :id
+
+-- :name all-dogs :? :*
+-- :doc get all dogs
+SELECT * FROM dogs
