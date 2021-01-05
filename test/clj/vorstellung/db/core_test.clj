@@ -35,19 +35,30 @@
 (deftest test-dogs
   (jdbc/with-transaction [t-conn *db* {:rollback-only true}]
     ;; make sure to rollback all the records in database
+    #_(condp = (second (clojure.string/split  (.getJdbcUrl *db*) #":"))
+        "sqlite" (do ...)
+        "mysql" (do ...)
+        "no match")
     (let [bob {:name "Bob" :color "blue"}
           tom {:name "Tom" :color "green"}]
       ;; create
-      (is (= 1 (db/create-dog! t-conn bob)))
+      (is (= 1
+             ;; the result is:
+             ;; {:last_insert_rowid() 1} in sqlite
+             ;; {:generated_key 1} in mysql
+             ;; thus we will fetch the value in the mapseq
+             (second (first (db/create-dog! t-conn bob)))))
       (is (= (assoc bob :id 1)
              (-> (db/get-dog t-conn {:id 1})
                  (dissoc :creatime))))
       ;; update
-      (is (= 1 (db/update-dog! t-conn (assoc tom :id 1))))
+      (is (= 1
+             (db/update-dog! t-conn (assoc tom :id 1))))
       (is (= (assoc tom :id 1)
              (-> (db/get-dog t-conn {:id 1})
                  (dissoc :creatime))))
-      (is (= 1 (db/create-dog! t-conn bob)))
+      (is (= 2
+             (second (first (db/create-dog! t-conn bob)))))
       ;; delete
       (is (= 1 (db/delete-dog! t-conn {:id 1})))
       ;; select all

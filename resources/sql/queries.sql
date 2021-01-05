@@ -21,7 +21,7 @@ WHERE email = :email
 DELETE FROM users
 WHERE email = :email
 
--- :name create-dog! :! :n
+-- :name create-dog! :insert :1
 -- :doc creates a new dog record
 INSERT INTO dogs
 (name, color)
