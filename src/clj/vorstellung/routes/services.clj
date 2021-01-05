@@ -10,7 +10,8 @@
    [vorstellung.middleware.formats :as formats]
    [vorstellung.middleware.exception :as exception]
    [ring.util.http-response :refer :all]
-   [clojure.java.io :as io]))
+   [clojure.java.io :as io]
+   [vorstellung.db.core :as db]))
 
 (defn service-routes []
   ["/api"
@@ -55,52 +56,43 @@
     [""
      {:get {:summary "fetch all dogs info with params"
             :parameters {}
-            :response {200 {:body {:dogs [{:dog {:id int? :name string? :color string?}}]}}}
-            :handler (fn [{{{:keys [id]} :path} :parameters}]
+            :response {200 {:body [{:id int? :name string? :color string? :creatime string?}]}}
+            :handler (fn [_]
                        {:status 200
-                        :body {:dogs
-                               [{:dog
-                                 {:id 1234
-                                  :name "AI"
-                                  :color "brwon"}}
-                                {:dog
-                                 {:id 1234
-                                  :name "AI"
-                                  :color "brwon"}}]}})}
+                        :body (db/all-dogs)})}
       :post {:summary "add a new dog"
-             :parameters {:query {:name string? :color string?}}
-             :response {200 {:body {:dogs [{:dog {:id int? :name string? :color string?}}]}}}
-             :handler (fn [{{{:keys [name color]} :query} :parameters}]
-                        {:status 200
-                         :body {:dog
-                                {:id 1234
-                                 :name name
-                                 :color color}}})}}]
+             :parameters {:body {:name string? :color string?}}
+             :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
+             :handler (fn [{{{:keys [name color]} :body} :parameters}]
+                        (let [rowid (second (first (db/create-dog! {:name name :color color})))
+                              dog (db/get-dog {:id rowid})]
+                          {:status 200
+                           :body dog}))}}]
     ["/:id"
      {:get {:summary "fetch dog info with id"
             :parameters {:path {:id int?}}
-            :response {200 {:body {:dog {:id int? :name string? :color string?}}}}
+            :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
             :handler (fn [{{{:keys [id]} :path} :parameters}]
                        {:status 200
-                        :body {:dog
-                               {:id 1234
-                                :name "AI"
-                                :color "brwon"}}})}
+                        :body (db/get-dog {:id id})})}
       :put {:summary "update a dog"
             :parameters {:path {:id int?}
                          :query {:name string? :color string?}}
-            :response {200 {:body {:dog {:id int? :name string? :color string?}}}}
+            :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
             :handler (fn [{{{:keys [id]} :path {:keys [name color]} :query} :parameters}]
-                       {:status 200
-                        :body {:dog
-                               {:id id
-                                :name name
-                                :color color}}})}
+                       (if (< 0 (db/update-dog! {:id id :name name :color color}))
+                         {:status 200
+                          :body (db/get-dog {:id id})}))}
       :delete {:summary "delete dog info with id"
                :parameters {:path {:id int?}}
-               :response {200 {}}
+               :response {200 {:body {:success string?}}
+                          400 {:body {:success string?}}}
                :handler (fn [{{{:keys [id]} :path} :parameters}]
-                          {:status 200})}}]]
+                          (if (< 0 (db/delete-dog! {:id id}))
+                            {:status 200
+                             :body {:success "success"}}
+                            {:status 400
+                             :body {:success "failure"}}))}}]]
 
    ["/math"
     {:swagger {:tags ["math"]}}

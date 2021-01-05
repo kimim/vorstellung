@@ -5,7 +5,11 @@
     [vorstellung.handler :refer :all]
     [vorstellung.middleware.formats :as formats]
     [muuntaja.core :as m]
-    [mount.core :as mount]))
+    [luminus-migrations.core :as migrations]
+    [mount.core :as mount]
+    [next.jdbc :as jdbc]
+    [vorstellung.config :refer [env]]
+    [vorstellung.db.core :refer [*db*] :as db]))
 
 (defn parse-json [body]
   (m/decode formats/instance "application/json" body))
@@ -14,7 +18,9 @@
   :once
   (fn [f]
     (mount/start #'vorstellung.config/env
-                 #'vorstellung.handler/app-routes)
+                 #'vorstellung.handler/app-routes
+                 #'vorstellung.db.core/*db*)
+    (migrations/migrate ["migrate"] (select-keys env [:database-url]))
     (f)))
 
 (deftest test-app
@@ -50,3 +56,21 @@
                                 (header "accept" "application/transit+json")))]
         (is (= 200 (:status response)))
         (is (= {:total 16} (m/decode-response-body response)))))))
+
+(deftest test-dogs
+  (testing "dogs"
+    (testing "add dog"
+      (let [response ((app) (-> (request :post "/api/dogs")
+                                (json-body {:name "Bob", :color "yellow"})))]
+        (is (= 200 (:status response)))
+        (is (= {:id 1 :name "Bob" :color "yellow"}
+               (-> (m/decode-response-body response)
+                   (dissoc :creatime)))))
+
+      (let [response ((app) (-> (request :get "/api/dogs")))]
+        (is (= 200 (:status response)))
+        (is (= [{:id 1 :name "Bob" :color "yellow"}]
+               (->> (m/decode-response-body response)
+                    (map #(dissoc % :creatime))))))
+
+      (migrations/migrate ["rollback"] (select-keys env [:database-url])))))
