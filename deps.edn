@@ -7,6 +7,7 @@
            {:jvm-opts ["-Dconf=test-config.edn"]
             :extra-paths ["test/clj" "env/test/resources" "env/test/clj" "env/test/resources"]
             :extra-deps {lambdaisland/kaocha {:mvn/version "1.0.732"}
+                         ;;lambdaisland/kaocha-cljs {:mvn/version "0.0-71"}
                          ring/ring-devel     {:mvn/version "1.8.1"}
                          ring/ring-mock      {:mvn/version "0.4.0"}}
             :main-opts  ["-m" "kaocha.runner"]}
