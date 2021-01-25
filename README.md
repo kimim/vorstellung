@@ -9,7 +9,7 @@ demo with material-ui
 - Linux
 
 ```shell
-export GRAALVM_VERSION=20.3.0
+export GRAALVM_VERSION=21.0.0
 export GRAALVM_NAME=graalvm-ce-java11-linux-amd64-$GRAALVM_VERSION
 export GRAALVM_LIB=graalvm-ce-java11-$GRAALVM_VERSION
 export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/download
@@ -24,7 +24,7 @@ source ~/.bashrc
 - macOS
 
 ```shell
-export GRAALVM_VERSION=20.3.0
+export GRAALVM_VERSION=21.0.0
 export GRAALVM_NAME=graalvm-ce-java11-darwin-amd64-$GRAALVM_VERSION
 export GRAALVM_LIB=graalvm-ce-java11-$GRAALVM_VERSION
 export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/download
@@ -49,7 +49,7 @@ Firstly, you need to install following tools:
 Then open `mintty.exe`, usually automatically appear in your desktop after installing `cygwin`:
 
 ```shell
-export GRAALVM_VERSION=20.3.0
+export GRAALVM_VERSION=21.0.0
 export GRAALVM_PACKAGE=graalvm-ce-java11-windows-amd64-$GRAALVM_VERSION
 export GRAALVM_LIB=graalvm-ce-java11-$GRAALVM_VERSION
 export GRAALVM_GITHUB=https://github.com/graalvm/graalvm-ce-builds/releases/download
