@@ -1,6 +1,6 @@
-(ns vorstellung.app
+(ns vorstellung.auth
   (:require
-   [vorstellung.app.core :as core]))
+   [vorstellung.auth.core :as core]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))

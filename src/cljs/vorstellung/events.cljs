@@ -7,7 +7,6 @@
    [reitit.frontend.controllers :as rfc]))
 
 ;;dispatchers
-
 (rf/reg-event-db
   :common/navigate
   (fn [db [_ match]]

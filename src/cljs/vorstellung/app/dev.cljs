@@ -1,4 +1,4 @@
-(ns ^:dev/once vorstellung.app
+(ns ^:dev/once vorstellung.app.dev
   (:require
    [vorstellung.app.core :as core]
    [cljs.spec.alpha :as s]

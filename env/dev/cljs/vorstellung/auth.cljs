@@ -1,6 +1,6 @@
-(ns ^:dev/once vorstellung.material
+(ns ^:dev/once vorstellung.auth
   (:require
-   [vorstellung.material.core :as core]
+   [vorstellung.auth.core :as core]
    [cljs.spec.alpha :as s]
    [expound.alpha :as expound]
    [devtools.core :as devtools]))

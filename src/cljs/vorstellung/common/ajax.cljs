@@ -1,4 +1,4 @@
-(ns vorstellung.ajax
+(ns vorstellung.common.ajax
   (:require
    [ajax.core :as ajax]
    [luminus-transit.time :as time]

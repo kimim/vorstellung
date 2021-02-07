@@ -1,6 +1,6 @@
-(ns vorstellung.material
+(ns vorstellung.app.prod
   (:require
-   [vorstellung.material.core :as core]))
+   [vorstellung.app.core :as core]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))

@@ -1,6 +1,6 @@
-(ns vorstellung.login
+(ns vorstellung.home.prod
   (:require
-   [vorstellung.login.core :as core]))
+   [vorstellung.home.core :as core]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))

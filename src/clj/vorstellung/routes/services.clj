@@ -10,7 +10,8 @@
    [vorstellung.middleware.formats :as formats]
    [vorstellung.middleware.exception :as exception]
    [ring.util.http-response :refer :all]
-   [clojure.java.io :as io]))
+   [clojure.java.io :as io]
+   [vorstellung.db.core :as db]))
 
 (defn service-routes []
   ["/api"
@@ -44,16 +45,54 @@
 
     ["/api-docs/*"
      {:get (swagger-ui/create-swagger-ui-handler
-             {:url "/api/swagger.json"
-              :config {:validator-url nil}})}]]
+            {:url "/api/swagger.json"
+             :config {:validator-url nil}})}]]
 
    ["/ping"
     {:get (constantly (ok {:message "pong"}))}]
 
-   ["/edn"
-    {:get {:handler
-           {:status 200
-            :body {:A 123}}}}]
+   ["/dogs"
+    {:swagger {:tags ["dogs"]}}
+    [""
+     {:get {:summary "fetch all dogs info with params"
+            :parameters {}
+            :response {200 {:body [{:id int? :name string? :color string? :creatime string?}]}}
+            :handler (fn [_]
+                       {:status 200
+                        :body (db/all-dogs)})}
+      :post {:summary "add a new dog"
+             :parameters {:body {:name string? :color string?}}
+             :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
+             :handler (fn [{{{:keys [name color]} :body} :parameters}]
+                        (let [rowid (second (first (db/create-dog! {:name name :color color})))
+                              dog (db/get-dog {:id rowid})]
+                          {:status 200
+                           :body dog}))}}]
+    ["/:id"
+     {:get {:summary "fetch dog info with id"
+            :parameters {:path {:id int?}}
+            :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
+            :handler (fn [{{{:keys [id]} :path} :parameters}]
+                       {:status 200
+                        :body (db/get-dog {:id id})})}
+      :put {:summary "update a dog"
+            :parameters {:path {:id int?}
+                         :query {:name string? :color string?}}
+            :response {200 {:body {:id int? :name string? :color string? :creatime string?}}}
+            :handler (fn [{{{:keys [id]} :path {:keys [name color]} :query} :parameters}]
+                       (if (< 0 (db/update-dog! {:id id :name name :color color}))
+                         {:status 200
+                          :body (db/get-dog {:id id})}))}
+      :delete {:summary "delete dog info with id"
+               :parameters {:path {:id int?}}
+               :response {200 {:body {:success string?}}
+                          400 {:body {:success string?}}}
+               :handler (fn [{{{:keys [id]} :path} :parameters}]
+                          (if (< 0 (db/delete-dog! {:id id}))
+                            {:status 200
+                             :body {:success "success"}}
+                            {:status 400
+                             :body {:success "failure"}}))}}]]
 
    ["/math"
     {:swagger {:tags ["math"]}}

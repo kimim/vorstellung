@@ -1,6 +1,6 @@
-(ns ^:dev/once vorstellung.charts
+(ns ^:dev/once vorstellung.home.dev
   (:require
-   [vorstellung.charts.core :as core]
+   [vorstellung.home.core :as core]
    [cljs.spec.alpha :as s]
    [expound.alpha :as expound]
    [devtools.core :as devtools]))

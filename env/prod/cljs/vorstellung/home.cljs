@@ -1,6 +1,6 @@
-(ns vorstellung.charts
+(ns vorstellung.home
   (:require
-   [vorstellung.charts.core :as core]))
+   [vorstellung.home.core :as core]))
 
 ;;ignore println statements in prod
 (set! *print-fn* (fn [& _]))

@@ -1,4 +1,4 @@
-(ns vorstellung.utils
+(ns vorstellung.common.utils
   (:require [cljs.pprint :as pp]))
 
 ;; copied from: http://blog.find-method.de/index.php?/archives/218-File-download-with-ClojureScript.html

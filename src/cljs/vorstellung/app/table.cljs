@@ -1,9 +1,9 @@
-(ns vorstellung.material.data-grid
+(ns vorstellung.app.table
   (:require
    [reagent.core :as r]
    ["@material-ui/core" :as m]
    ["@material-ui/data-grid" :as dg]
-   [vorstellung.utils :as utils]))
+   [vorstellung.common.utils :as utils]))
 
 (def rows  (for [i (range 1 101)]
              {:id i, :lastName "Snow", :firstName "Jon", :age (rand-int 35)}))

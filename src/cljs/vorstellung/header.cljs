@@ -6,7 +6,6 @@
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
    ["@material-ui/icons/ExitToApp" :default ExitToApp]
-
    ["@material-ui/icons/ContactSupportOutlined" :default ContactSupportOutlined]
    ["@material-ui/icons/Menu" :default Menu]
    ["@material-ui/icons/ChevronRight" :default ChevronRight]
@@ -22,26 +21,13 @@
    ["@material-ui/icons/ExpandLess" :default ExpandLess]
    ["@material-ui/icons/ExpandMore" :default ExpandMore]
    ["@material-ui/icons/Build" :default Build]
-   #_["@material-ui/icons"
-    :refer [Menu ChevronRight ChevronLeft Toys ViewModule Info]]))
+   [vorstellung.common.menu :as menu]
+   [vorstellung.app.menu :as menu-app]))
 
-(defn menu-item [link icon text]
-  [:> m/ListItem {:button true :component "a" :href link}
-   [:> m/ListItemIcon [:> icon]]
-   [:> m/Typography {:variant "inherit" :noWrap true} text]])
-
-(defn menu-material-ui []
-  (r/with-let [open? (r/atom false)]
-    [:<>
-     [:> m/ListItem {:button true :selected (if @open? true false) :on-click #(swap! open? not)}
-      [:> m/ListItemIcon [:> Build]]
-      [:> m/Typography {:variant "inherit" :noWrap true :style {:flexGrow 1}} "Material UI"]
-      (if @open? [:> ExpandLess] [:> ExpandMore])]
-     [:> m/Collapse {:in @open?}
-      [menu-item "/material/#/grid" ViewComfy "Grid Layout"]
-      [menu-item "/material/#/data-grid" GridOn "Data Grid"]
-      [menu-item "/material/#/upload" BackupOutlined "File Uploader"]
-      [menu-item "/material/#/picker" Today "Date Picker"]]]))
+(defn menu-list []
+  [:<>
+   [menu-app/menu]
+   [menu/item "/#/about" ContactSupportOutlined "About"]])
 
 (defn navbar []
   (r/with-let [open (r/atom false)]
@@ -77,10 +63,7 @@
               [:> ChevronRight])]]
         [:> m/Divider]
         [:> m/List {:style {:width (if @open "240px" "55px")}}
-         [menu-item "/icons" ToysOutlined "Icons"]
-         [menu-material-ui]
-         [menu-item "/charts" InsertChartOutlined "BizCharts"]
-         [menu-item "/#/about" ContactSupportOutlined "About"]]]]
+         [menu-list]]]]
       [:div
        [:> m/Fab {:size "small"
                   :style {;; same location as maximize button
@@ -99,3 +82,8 @@
               {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
               {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
       [page]]]))
+
+(defn page-no-header []
+  (if-let [page @(rf/subscribe [:common/page])]
+    [:div {:style {:display "flex"}}
+     [page]]))
