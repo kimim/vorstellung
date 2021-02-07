@@ -21,6 +21,8 @@
    ["@material-ui/icons/ExpandLess" :default ExpandLess]
    ["@material-ui/icons/ExpandMore" :default ExpandMore]
    ["@material-ui/icons/Build" :default Build]
+   ["@material-ui/icons/Brightness4" :default Brightness4]
+   ["@material-ui/icons/Brightness5" :default Brightness5]
    [vorstellung.common.menu :as menu]
    [vorstellung.app.menu :as menu-app]))
 
@@ -29,7 +31,7 @@
    [menu-app/menu]
    [menu/item "/#/about" ContactSupportOutlined "About"]])
 
-(defn navbar []
+(defn navbar [toolbar]
   (r/with-let [open (r/atom false)]
     (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
             @(rf/subscribe [:common/navbar-visible?]))
@@ -43,8 +45,19 @@
                                    :margin-right "2px" :display (if @open "none" "inherit")}
                            :on-click #(swap! open not)}
           [:> Menu]]
-         [:> m/Typography {:variant "h6" :style {:flexGrow 1}}
-          "Die Welt ist Meine Vorstellung"]
+         [:> m/Toolbar {:style {:flexGrow 1}}
+          [:> m/Typography {:variant "h6"}
+           "Die Welt ist Meine Vorstellung"]
+          [toolbar]]
+         ;; button the switch dark and light theme
+         (if-let [theme (rf/subscribe [:common/theme])]
+           (let [new-theme (if (= "light" @theme) "night" "light")]
+             [:> m/IconButton {:style {:color "white"}
+                               :on-click #(rf/dispatch [:common/set-theme new-theme])}
+              (if (= "light" @theme)
+                [:> Brightness4]
+                [:> Brightness5])]))
+         ;; button to switch fullscreen
          [:> m/IconButton {:style {:color "white"}
                            :on-click #(rf/dispatch [:common/set-navbar-visible? false])}
           [:> Fullscreen]]
@@ -76,14 +89,14 @@
 (defn page []
   (if-let [page @(rf/subscribe [:common/page])]
     [:div {:style {:display "flex"}}
-     [navbar]
+     [navbar (:tool page)]
      [:main (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
                     @(rf/subscribe [:common/navbar-visible?]))
               {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
               {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
-      [page]]]))
+      [(:page page)]]]))
 
 (defn page-no-header []
   (if-let [page @(rf/subscribe [:common/page])]
     [:div {:style {:display "flex"}}
-     [page]]))
+     [(:page page)]]))

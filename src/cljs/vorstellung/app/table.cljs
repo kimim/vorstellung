@@ -31,24 +31,25 @@
 
 (defn people []
   [:div {:style {:height "90vh", :width "100%"}}
-   [:> m/Paper
-    [:> m/Toolbar
-     [:> m/Button {:style {:margin "5px 5px 5px 10px"}
-                   :type "button" :variant "contained" :color "primary"}
-      "Load"]
-     [:> m/Button {:style {:margin "5px 5px 5px 10px"}
-                   :type "button" :variant "contained" :color "primary"}
-      "Send"]
-     [:> m/Button {:style {:margin "5px 5px 5px 10px"}
-                   :type "button" :variant "contained" :color "primary"
-                   :on-click #(export-rows rows)}
-      "Export"]]
-    [:> m/TableContainer {:style {:height "80vh", :width "auto"}}
-     [:> dg/DataGrid {:rows rows :columns cols :checkboxSelection true :autoPageSize true
-                      :exportAllData true}]]]])
+   [:> m/TableContainer {:style {:height "80vh", :width "auto"}}
+    [:> dg/DataGrid {:rows rows :columns cols :checkboxSelection true :autoPageSize true
+                     :exportAllData true}]]])
 
 (defn page []
   [:> m/Container {:max-width "lg" :disableGutters true}
    [:> m/Grid {:container true :spacing 3}
     [:> m/Grid {:item true :xs 12 :sm 12 :lg 12}
      [people]]]])
+
+(defn toolbar []
+  [:> m/Toolbar
+   [:> m/Button {:style {:margin "5px 5px 5px 10px"}
+                 :type "button" :variant "contained" :color "primary"}
+    "Load"]
+   [:> m/Button {:style {:margin "5px 5px 5px 10px"}
+                 :type "button" :variant "contained" :color "primary"}
+    "Send"]
+   [:> m/Button {:style {:margin "5px 5px 5px 10px"}
+                 :type "button" :variant "contained" :color "primary"
+                 :on-click #(export-rows rows)}
+    "Export"]])

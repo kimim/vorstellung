@@ -1,13 +1,14 @@
 (ns vorstellung.core
   (:require
-   [vorstellung.handler :as handler]
-   [vorstellung.nrepl :as nrepl]
+   [clojure.tools.logging :as log]
+   [clojure.tools.cli :refer [parse-opts]]
+   [mount.core :as mount]
    [luminus.http-server :as http]
    [luminus-migrations.core :as migrations]
-   [vorstellung.config :refer [env]]
-   [clojure.tools.cli :refer [parse-opts]]
-   [clojure.tools.logging :as log]
-   [mount.core :as mount])
+   [cider.nrepl :refer [cider-nrepl-handler]]
+   [vorstellung.handler :as handler]
+   [vorstellung.nrepl :as nrepl]
+   [vorstellung.config :refer [env]])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
@@ -35,6 +36,7 @@
   :start
   (when (env :nrepl-port)
     (nrepl/start {:bind (env :nrepl-bind)
+                  :handler cider-nrepl-handler
                   :port (env :nrepl-port)}))
   :stop
   (when repl-server

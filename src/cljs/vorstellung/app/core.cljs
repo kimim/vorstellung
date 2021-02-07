@@ -29,12 +29,15 @@
 (def router
   (reitit/router
     [["/"       {:name          ::home
-                 :view          home-page
+                 :view          {:page home-page
+                                 :tool (fn [] [:div])}
                  :controllers   [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
      ["/table"  {:name          ::table
-                 :view          #'table/page}]
+                 :view          {:page #'table/page
+                                 :tool #'table/toolbar}}]
      ["/about"  {:name          ::about
-                 :view          #'about-page}]]))
+                 :view          {:page #'about-page
+                                 :tool (fn [] [:div])}}]]))
 
 ;; -------------------------
 ;; Initialize app

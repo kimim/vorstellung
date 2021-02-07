@@ -20,9 +20,11 @@
 (def router
   (reitit/router
    [["/"        {:name      :signin
-                 :view      page/signin}]
+                 :view      {:page #'page/signin
+                             :tool (fn [] [:div])}}]
      ["/signup" {:name      :signup
-                 :view      page/signup}]]))
+                 :view      {:page #'page/signup
+                             :tool (fn [] [:div])}}]]))
 
 ;; -------------------------
 ;; Initialize app
