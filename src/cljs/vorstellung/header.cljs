@@ -24,11 +24,13 @@
    ["@material-ui/icons/Brightness4" :default Brightness4]
    ["@material-ui/icons/Brightness5" :default Brightness5]
    [vorstellung.common.menu :as menu]
-   [vorstellung.app.menu :as menu-app]))
+   [vorstellung.app.menu :as menu-app]
+   [vorstellung.echarts.menu :as menu-echarts]))
 
 (defn menu-list []
   [:<>
    [menu-app/menu]
+   [menu-echarts/menu]
    [menu/item "/#/about" ContactSupportOutlined "About"]])
 
 (defn navbar [toolbar]

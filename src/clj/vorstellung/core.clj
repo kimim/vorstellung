@@ -3,9 +3,9 @@
    [clojure.tools.logging :as log]
    [clojure.tools.cli :refer [parse-opts]]
    [mount.core :as mount]
-   [luminus.http-server :as http]
    [luminus-migrations.core :as migrations]
    [cider.nrepl :refer [cider-nrepl-handler]]
+   [vorstellung.server :as http]
    [vorstellung.handler :as handler]
    [vorstellung.nrepl :as nrepl]
    [vorstellung.config :refer [env]])

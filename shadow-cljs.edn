@@ -32,7 +32,9 @@
                       :auth {:entries [vorstellung.auth.dev]
                              :depends-on #{:shared}}
                       :app  {:entries [vorstellung.app.dev]
-                             :depends-on #{:shared}}}
+                             :depends-on #{:shared}}
+                      :echarts  {:entries [vorstellung.echarts.dev]
+                                 :depends-on #{:shared}}                      }
             :devtools {:watch-dir "resources/public"
                              :preloads [re-frisk.preload]}
             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
@@ -46,4 +48,6 @@
                       :auth {:entries [vorstellung.auth.prod]
                              :depends-on #{:shared}}
                       :app  {:entries [vorstellung.app.prod]
-                             :depends-on #{:shared}}}}}}
+                             :depends-on #{:shared}}
+                      :echarts {:entries [vorstellung.echarts.prod]
+                                :depends-on #{:shared}}}}}}

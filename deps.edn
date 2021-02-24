@@ -48,8 +48,8 @@
         cprop/cprop                                 {:mvn/version "0.1.17"}
         expound/expound                             {:mvn/version "0.8.5"}
         funcool/struct                              {:mvn/version "1.4.0"}
+        http-kit/http-kit                           {:mvn/version "2.5.3"}
         luminus-migrations/luminus-migrations       {:mvn/version "0.6.7"}
-        luminus-http-kit/luminus-http-kit           {:mvn/version "0.1.8"}
         luminus-transit/luminus-transit             {:mvn/version "0.1.2"}
         luminus/ring-ttl-session                    {:mvn/version "0.3.3"}
         markdown-clj/markdown-clj                   {:mvn/version "1.10.5"}
