@@ -8,7 +8,6 @@
    ["@material-ui/icons/Build" :default Build]
    ["@material-ui/icons/ExpandLess" :default ExpandLess]
    ["@material-ui/icons/ExpandMore" :default ExpandMore]
-   ["@material-ui/icons/ToysOutlined" :default ToysOutlined]
    ["@material-ui/icons/ViewComfy" :default ViewComfy]
    ["@material-ui/icons/GridOn" :default GridOn]
    ["@material-ui/icons/BackupOutlined" :default BackupOutlined]
