@@ -6,6 +6,7 @@
                 [luminus-transit "0.1.2"] ;; required by vorstellung/common/ajax.cljs
                 [metosin/reitit "0.5.15"]
                 [day8.re-frame/http-fx "0.2.3"]
+                [re-echarts "5.1.1"]
                 ;; dev
                 [prone "2020-01-17"]
                 [re-frisk "1.3.4"]

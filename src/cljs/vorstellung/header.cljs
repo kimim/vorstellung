@@ -29,7 +29,7 @@
 
 (defn menu-list []
   [:<>
-   [menu-app/menu]
+   ;;[menu-app/menu]
    [menu-echarts/menu]
    [menu/item "/#/about" ContactSupportOutlined "About"]])
 

@@ -22,10 +22,6 @@
    (when-let [docs @(rf/subscribe [:docs])]
      [:div {:dangerouslySetInnerHTML {:__html (md->html docs)}}])])
 
-(defn about-page []
-  [:div
-   [:img {:src "/img/warning_clojure.png"}]])
-
 (def router
   (reitit/router
    [["/"        {:name        :home
@@ -33,8 +29,9 @@
                                :tool (fn [] [:div])}
                  :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
     ["/about"   {:name        :about
-                 :view        {:page #'about-page
-                               :tool (fn [] [:div])}}]]))
+                 :view        {:page #'home-page
+                               :tool (fn [] [:div])}
+                 :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]]))
 
 ;; -------------------------
 ;; Initialize app
