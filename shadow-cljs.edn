@@ -1,14 +1,12 @@
 {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
- :dependencies [[cljs-ajax "0.8.0"]
-                [re-frame "1.1.2"]
-                [reagent "1.0.0"]
-                [metosin/reitit "0.5.5"]
-                [day8.re-frame/http-fx "0.1.6"]
-                [markdown-clj "1.10.5"]
+ :dependencies [[cljs-ajax "0.8.4"]
+                [re-frame "1.2.0"]
+                [reagent "1.1.0"]
+                [metosin/reitit "0.5.15"]
+                [day8.re-frame/http-fx "0.2.3"]
+                [markdown-clj "1.10.6"]
                 [luminus-transit "0.1.2"]
                 [nrepl "0.8.0"]
-                [com.google.javascript/closure-compiler-unshaded "v20200504" :scope "provided"]
-                [org.clojure/google-closure-library "0.0-20191016-6ae1f72f" :scope "provided"]
                 ;; dev
                 [binaryage/devtools "1.0.2"]
                 [cider/piggieback "0.5.0"]
@@ -34,9 +32,9 @@
                       :app  {:entries [vorstellung.app.dev]
                              :depends-on #{:shared}}
                       :echarts  {:entries [vorstellung.echarts.dev]
-                                 :depends-on #{:shared}}                      }
+                                 :depends-on #{:shared}}}
             :devtools {:watch-dir "resources/public"
-                             :preloads [re-frisk.preload]}
+                       :preloads [re-frisk.preload]}
             :dev {:closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
   :prod    {:target :browser
             :output-dir "target/cljsbuild/public/js"
