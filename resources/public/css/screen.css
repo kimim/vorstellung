@@ -1,7 +1,7 @@
 html,
 body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    overflow-y: auto;
+    overflow-y: hidden /*hide scrollbar*/
 }
 @font-face {
   font-family: 'Material Icons';

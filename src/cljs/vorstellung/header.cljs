@@ -94,8 +94,8 @@
      [navbar (:tool page)]
      [:main (if (or (nil? @(rf/subscribe [:common/navbar-visible?]))
                     @(rf/subscribe [:common/navbar-visible?]))
-              {:style {:flexGrow 1 :padding "88px 24px 24px 24px"}}
-              {:style {:flexGrow 1 :padding "24px 24px 24px 24px"}})
+              {:style {:flex-grow 1 :padding "88px 24px 24px 24px"}}
+              {:style {:flex-grow 1 :padding "0px 0px 0px 0px"}})
       [(:page page)]]]))
 
 (defn page-no-header []
