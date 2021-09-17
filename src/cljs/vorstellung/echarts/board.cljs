@@ -81,12 +81,62 @@
                :type :bar
                :data [19325, 23438, 31000, 121594, 134141, 681807]}]}}])
 
+(defn machines []
+  [:> ECharts
+   {:style {:width "100%" :height "100%"}
+    :theme "dark"
+    :option
+    {:title {:text "火电机组状态"
+             :subtext "数据来自网络"}
+     :tooltip {:trigger :axis
+               :axis-pointer {:type :shadow}}
+     :legend {:data ["10万" "30万" "60万"]}
+     :grid {:left "3%"
+            :right "4%"
+            :bottom "3%"
+            :contain-label true}
+     :x-axis {:type :value
+              ::boundary-gap [0 0.01]}
+     :y-axis {:type :category
+              :data ["运行", "停用", "维修"]}
+     :series [{:name ""
+               :type :bar
+               :data [170 150 50]}
+              {:name ""
+               :type :bar
+               :data [250 200 80]}
+              {:name ""
+               :type :bar
+               :data [375 160 90]}]}}])
+
+(defn generations []
+  [:> ECharts
+      {:style {:width "100%" :height "100%"}
+       :theme "dark"
+       :option
+       {:title {:text "发电量"}
+        :dataset {:dimention [:Factory :Value]
+                  :source [{:Factory "电厂1#" :Value 820}
+                           {:Factory "电厂2#" :Value 700}
+                           {:Factory "电厂3#" :Value 650}
+                           {:Factory "电厂4#" :Value 601}
+                           {:Factory "电厂5#" :Value 801}
+                           {:Factory "电厂6#" :Value 301}
+                           {:Factory "电厂76#" :Value 301}
+                           {:Factory "电厂8#" :Value 301}
+                           {:Factory "电厂9#" :Value 301}
+                           {:Factory "电厂10#" :Value 301}]}
+        :xAxis {:type "category"}
+        :yAxis {:type "value"}
+        :series [{:type "bar"
+                  :smooth true}]}}])
+
 (defn page []
   [:div {:style {:background-color "#333" :width "100%" :height "100%" :margin 0 :padding 0}}
    [:> m/Grid {:container true :spacing 0 :style {:height "100vh" :width "100vw"}}
     [:> m/Grid {:container true :xs 4 :spacing 1}
      [:> m/Grid {:item true :xs 12 :spacing 0 :style {:height "50vh" :width "100vw"}}
-      [bar]]
+      [machines]]
      [:> m/Grid {:item true :xs 12 :spacing 0 :style {:height "50vh" :width "100vw"}}
       [capacity]]]
     [:> m/Grid {:container true :xs 4 :spacing 1}
@@ -95,7 +145,7 @@
      [:> m/Grid {:item true :xs 12 :spacing 0 :style {:height "50vh" :width "100vw"}}
       [capacity]]
      [:> m/Grid {:item true :xs 12 :spacing 0 :style {:height "25vh" :width "100vw"}}
-      [capacity]]]
+      [generations]]]
     [:> m/Grid {:container true :xs 4 :spacing 1}
      [:> m/Grid {:item true :xs 12 :spacing 0 :style {:height "50vh" :width "100vw"}}
       [pie]]
