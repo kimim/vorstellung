@@ -6,19 +6,19 @@
                 [luminus-transit "0.1.2"] ;; required by vorstellung/common/ajax.cljs
                 [metosin/reitit "0.5.15"]
                 [day8.re-frame/http-fx "0.2.3"]
-                [re-echarts "5.1.1"]
+                [re-echarts "5.2.0"]
                 ;; dev
-                [prone "2020-01-17"]
-                [re-frisk "1.3.4"]
-                [ring/ring-devel "1.8.1"]
+                [prone "2021-04-23"]
+                [re-frisk "1.5.1"]
+                [ring/ring-devel "1.9.4"]
                 [ring/ring-mock "0.4.0"]
-                [binaryage/devtools "1.0.2"]
-                [cider/piggieback "0.5.0"]
-                [pjstadig/humane-test-output "0.10.0"]
+                [binaryage/devtools "1.0.3"]
+                [cider/piggieback "0.5.2"]
+                [pjstadig/humane-test-output "0.11.0"]
                 [re-frisk "1.5.1"]
                 [nrepl "0.8.3"]
                 [cider/cider-nrepl "0.26.0"]
-                [refactor-nrepl "2.5.0"]]
+                [refactor-nrepl "3.0.0-pr301"]]
 
  :nrepl     {:port 7002}
  :builds
