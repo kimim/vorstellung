@@ -1,12 +1,12 @@
 {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
  :dependencies [[cljs-ajax "0.8.4"]
-                [re-frame "1.2.0"]
-                [reagent "1.1.0"]
+                [re-frame "1.4.0"]
+                [reagent "1.2.0"]
                 [markdown-clj "1.10.6"] ;; required by vorstellung/home/core.cljs
                 [luminus-transit "0.1.2"] ;; required by vorstellung/common/ajax.cljs
                 [metosin/reitit "0.5.15"]
                 [day8.re-frame/http-fx "0.2.3"]
-                [re-echarts "5.2.0"]
+                [re-echarts "5.2.1"]
                 ;; dev
                 [prone "2021-04-23"]
                 [re-frisk "1.5.1"]

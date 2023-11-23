@@ -1,8 +1,8 @@
 (ns vorstellung.app.table
   (:require
    [reagent.core :as r]
-   ["@material-ui/core" :as m]
-   ["@material-ui/data-grid" :as dg]
+   ["@mui/material" :as m]
+   ["@mui/x-data-grid" :as dg]
    [vorstellung.common.utils :as utils]))
 
 (def rows  (for [i (range 1 101)]

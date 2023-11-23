@@ -1,7 +1,7 @@
 (ns vorstellung.echarts.board
   (:require
    [reagent.core :as r]
-   ["@material-ui/core" :as m]
+   ["@mui/material" :as m]
    [re-echarts.core :refer [ECharts]]
    [vorstellung.common.utils :as utils]))
 

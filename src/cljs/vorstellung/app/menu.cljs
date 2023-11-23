@@ -2,16 +2,16 @@
   (:require
    [reagent.core :as r]
    [re-frame.core :as rf]
-   ["@material-ui/core" :as m]
+   ["@mui/material" :as m]
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
-   ["@material-ui/icons/Build" :default Build]
-   ["@material-ui/icons/ExpandLess" :default ExpandLess]
-   ["@material-ui/icons/ExpandMore" :default ExpandMore]
-   ["@material-ui/icons/ViewComfy" :default ViewComfy]
-   ["@material-ui/icons/GridOn" :default GridOn]
-   ["@material-ui/icons/BackupOutlined" :default BackupOutlined]
-   ["@material-ui/icons/Today" :default Today]
+   ["@mui/icons-material/Build" :default Build]
+   ["@mui/icons-material/ExpandLess" :default ExpandLess]
+   ["@mui/icons-material/ExpandMore" :default ExpandMore]
+   ["@mui/icons-material/ViewComfy" :default ViewComfy]
+   ["@mui/icons-material/GridOn" :default GridOn]
+   ["@mui/icons-material/BackupOutlined" :default BackupOutlined]
+   ["@mui/icons-material/Today" :default Today]
    [vorstellung.common.menu :as menu]))
 
 (defn menu []

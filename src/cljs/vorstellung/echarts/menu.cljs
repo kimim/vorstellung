@@ -2,7 +2,7 @@
   (:require
    ;; require only submodules, reduce 7M in dev, 4M in prod
    ;; https://clojure.atlassian.net/browse/CLJS-2376 about :default
-   ["@material-ui/icons/ViewComfy" :default ViewComfy]
+   ["@mui/icons-material/ViewComfy" :default ViewComfy]
    [vorstellung.common.menu :as menu]))
 
 (defn menu []
